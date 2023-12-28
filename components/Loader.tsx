@@ -5,7 +5,7 @@ interface LoaderProps {
   textClassNames?: string
 }
 
-export const Loader: FunctionComponent<LoaderProps> = ({}) => {
+export const Loader: FunctionComponent<LoaderProps> = () => {
   return (
     <div className="flex justify-center items-center w-screen h-screen">
       <div className="animate-spin">
