@@ -3,15 +3,6 @@
 import React, { useEffect, useState, FunctionComponent } from 'react'
 import { BsGrid } from 'react-icons/bs'
 import { ConnectMedia, Menu } from 'components'
-import {
-  animate,
-  animateMobile,
-  exit,
-  exitMobile,
-  initial,
-  initialMobile,
-  transition,
-} from 'utils'
 import { m, AnimatePresence, domAnimation, LazyMotion } from 'framer-motion'
 import { IoMdClose } from 'react-icons/io'
 
@@ -25,16 +16,21 @@ export const MobileMenu: FunctionComponent = () => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
 
+  const variants = {
+    hidden: { opacity: 0, x: '-100%' },
+    visible: { opacity: 1, x: 0 },
+  }
+
   return (
     <LazyMotion features={domAnimation}>
       <m.button
         className="p-2"
         onClick={onOpen}
         title="Open menu"
-        initial={initial}
-        animate={animate}
-        exit={exit}
-        transition={transition}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        transition={{ delay: 0.2 }}
       >
         <BsGrid />
       </m.button>
@@ -43,10 +39,11 @@ export const MobileMenu: FunctionComponent = () => {
         {isOpen && (
           <m.div
             className="backdrop-blur-md fixed left-0 right-0 top-0 min-h-screen z-50"
-            initial={initialMobile}
-            animate={animateMobile}
-            exit={exitMobile}
-            transition={transition}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={variants}
+            transition={{ duration: 0.2 }}
           >
             <header className="p-6 flex items-center justify-between border-b border-b-brand-light z-10">
               <ConnectMedia />

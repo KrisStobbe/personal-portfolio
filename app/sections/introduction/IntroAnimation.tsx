@@ -50,7 +50,15 @@ export function WelcomeAnimation() {
           rx="1.07306"
           ry="1.07433"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
             <mpath xlinkHref="#path_2" />
           </animateMotion>
@@ -71,7 +79,16 @@ export function WelcomeAnimation() {
           rx="1.07306"
           ry="1.07433"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            begin="1s"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion
             dur="5s"
             begin="1"
@@ -102,7 +119,15 @@ export function WelcomeAnimation() {
           ry="1.07306"
           transform="translate(-476.525 -363.313) rotate(90 476.525 363.313)"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion dur="10s" repeatCount="indefinite" rotate="auto">
             <mpath xlinkHref="#path_0" />
           </animateMotion>
@@ -123,7 +148,16 @@ export function WelcomeAnimation() {
           ry="1.07306"
           transform="translate(-382.164 -155.029) rotate(90 382.164 155.029)"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            begin="1s"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion
             dur="10s"
             begin="1"
@@ -154,7 +188,16 @@ export function WelcomeAnimation() {
           ry="1.07433"
           transform="translate(-333.324 -382.691) rotate(-180 333.324 382.691)"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            begin="0s"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion
             dur="5s"
             begin="0"
@@ -185,7 +228,16 @@ export function WelcomeAnimation() {
           ry="1.07433"
           transform="translate(-165.524 -93.9596)"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            begin="3s"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion
             dur="10s"
             begin="3"
@@ -216,7 +268,16 @@ export function WelcomeAnimation() {
           ry="1.07306"
           transform="translate(-476.525 -363.313) rotate(90 476.525 363.313)"
           fill={darkThemeColor ? '#fff' : '#000'}
+          opacity="0"
         >
+          <animate
+            attributeName="opacity"
+            from="0"
+            to="1"
+            begin="4s"
+            dur="0.001s"
+            fill="freeze"
+          />
           <animateMotion
             dur="12s"
             begin="4"

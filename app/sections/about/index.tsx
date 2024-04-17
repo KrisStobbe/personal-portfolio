@@ -34,24 +34,34 @@ export function AboutSection() {
             </div>
 
             <p>
-              I'm Kristoffer, a Senior Software Engineer specialized in
-              full-stack development, data analytics, and technical support. My
-              expertise in leading projects has significantly improved user
-              experiences and operational efficiency.
+              Hello, I'm Kristoffer, a Senior Software Engineer with a focus on
+              full-stack development, data analytics, and cloud infrastructure.
+              With a track record of leading projects, I've consistently
+              elevated user experiences and streamlined operational processes.
             </p>
             <br />
             <p>
-              My career highlights include leading the design and development of
-              a React-based financial application with a RESTful API. Skilled in
-              Python, JavaScript, Java, React, AWS, and other technologies, I am
-              adept at building sophisticated, scalable solutions.
+              One of my notable achievements includes overseeing the conception
+              and execution of a React-powered financial application
+              complemented by a robust RESTful API. Proficient in an array of
+              technologies such as Python, JavaScript, Java, React, and AWS, I
+              excel in crafting intricate, scalable solutions that meet diverse
+              business needs.
             </p>
             <br />
             <p>
-              Academically, I hold a Master's in Data Analytics from Georgia
-              Tech and a Bachelor's in Electrical & Computer Engineering from
-              Baylor University. Beyond work, I'm passionate about playing
-              electric guitar and exploring philosophy, astronomy, and physics.
+              My educational background includes a Master's degree in Data
+              Analytics from Georgia Tech and a Bachelor's degree in Electrical
+              & Computer Engineering from Baylor University, underscoring my
+              commitment to continuous learning and expertise in the field.
+            </p>
+            <br />
+            <p>
+              Beyond the realm of software engineering, I find joy in playing
+              electric guitar and delving into realms of philosophy, astronomy,
+              and physics. I believe in fostering not just professional growth,
+              but also nurturing passions and interests outside of work for a
+              balanced and fulfilling life.
             </p>
             <br />
           </div>

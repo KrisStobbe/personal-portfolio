@@ -32,12 +32,18 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
     window.setTimeout(() => onClick(), 350)
   }
 
+  const variants = {
+    hidden: { opacity: 0, x: '-100%' },
+    visible: { opacity: 1, x: 0 },
+  }
+
   const mainMenu = (
     <m.nav
-      initial={initial}
-      animate={animate}
-      exit={exit}
-      transition={transition}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={variants}
+      transition={{ duration: 0.2 }}
       role="menu"
     >
       <ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
