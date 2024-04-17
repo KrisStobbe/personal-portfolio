@@ -58,7 +58,7 @@ export function AboutSection() {
             <br />
             <p>
               Beyond the realm of software engineering, I find joy in playing
-              electric guitar and delving into realms of philosophy, astronomy,
+              electric guitar and exploring the fields of philosophy, astronomy,
               and physics. I believe in fostering not just professional growth,
               but also nurturing passions and interests outside of work for a
               balanced and fulfilling life.
