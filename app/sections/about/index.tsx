@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TimeLine } from './TimeLine'
+import Link from 'next/link'
 
 export function AboutSection() {
   const ref = useRef<HTMLDivElement>(null)
@@ -64,6 +65,25 @@ export function AboutSection() {
               balanced and fulfilling life.
             </p>
             <br />
+            <div
+              className="mt-5"
+              ref={ref}
+              style={{
+                transform: isInView ? 'none' : 'translateY(50px)',
+                opacity: isInView ? 1 : 0,
+                transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+              }}
+            >
+              <Link
+                href="/assets/resume/kristoffer-stobbe-resume.pdf"
+                tabIndex={0}
+                className="btn btn-primary"
+                aria-label="View Resume"
+                target="_blank"
+              >
+                View Resume
+              </Link>
+            </div>
           </div>
         </div>
         <TimeLine />
