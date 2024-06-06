@@ -9,15 +9,19 @@ interface TimeLineItem {
 const TimeLineData: TimeLineItem[] = [
   {
     year: 2018,
-    text: 'Graduated from Baylor University with a BS in Electrical & Computer Engineering, Minor in Mathematics.',
+    text: 'Graduated from Baylor University with a B.S. in Electrical & Computer Engineering and a Minor in Mathematics.',
   },
   {
     year: 2018,
-    text: 'Joined SAS Institute, starting my journey in software and data analytics.',
+    text: 'Began my career at SAS Institute focusing on software and data analytics.',
   },
   {
     year: 2020,
-    text: 'Joined SunPower as a Data Analyst, designing data schemas and building full stack applications.',
+    text: 'Joined SunPower as a Data Analyst & Engineer, focusing on schema design and operational automation.',
+  },
+  {
+    year: 2021,
+    text: "Promoted to SunPower's Software Engineering team to work on building financial applications.",
   },
   {
     year: 2022,
@@ -25,7 +29,7 @@ const TimeLineData: TimeLineItem[] = [
   },
   {
     year: 2023,
-    text: 'Completed MS in Data Analytics from Georgia Institute of Technology.',
+    text: 'Completed M.S. in Data Analytics from Georgia Institute of Technology.',
   },
 ]
 
@@ -105,9 +109,7 @@ export function TimeLine() {
                 height="6"
                 viewBox="0 0 208 6"
                 fill={colorMode === 'dark' ? '#fff' : '#232323'}
-              >
-                {/* ... SVG path and defs */}
-              </svg>
+              />
             </h3>
             <p className="tracking-wide" tabIndex={0}>
               {item.text}
