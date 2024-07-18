@@ -37,17 +37,17 @@ export function AboutSection() {
             <p>
               Hello, I'm Kristoffer, a Senior Software Engineer with a focus on
               full-stack development, data analytics, and cloud infrastructure.
-              With a track record of leading projects, I've consistently
-              elevated user experiences and streamlined operational processes.
+              Proficient in an array of technologies such as TypeScript, Python,
+              Java, React, and AWS, I excel in crafting intricate, scalable
+              solutions that meet diverse business needs.
             </p>
             <br />
             <p>
-              One of my notable achievements includes overseeing the conception
-              and execution of a React-powered financial application
-              complemented by a robust RESTful API. Proficient in an array of
-              technologies such as Python, JavaScript, Java, React, and AWS, I
-              excel in crafting intricate, scalable solutions that meet diverse
-              business needs.
+              While leading numerous projects, I've consistently elevated user
+              experiences and streamlined operational processes. One of my
+              notable achievements includes overseeing the conception and
+              execution of a React-powered financial application complemented by
+              a robust RESTful API.
             </p>
             <br />
             <p>

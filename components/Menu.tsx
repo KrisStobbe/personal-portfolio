@@ -2,7 +2,7 @@
 
 import React, { FunctionComponent } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { useScrollTo } from 'hooks'
 import { BsArrowReturnLeft } from 'react-icons/bs'
@@ -21,6 +21,7 @@ interface MenuProps {
 
 export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
   const pathname = usePathname()
+  const router = useRouter()
   const { scrollToEl } = useScrollTo()
 
   const sortAscending = (a: MenuItem, b: MenuItem) => a.id.localeCompare(b.id)
@@ -32,8 +33,18 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
     window.setTimeout(() => onClick(), 350)
   }
 
+  const handleBackClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
+    e.preventDefault()
+    onClick()
+    setTimeout(() => {
+      router.push(SITE_ROUTES.home)
+    }, 350)
+  }
+
   const variants = {
-    hidden: { opacity: 0, x: '-100%' },
+    hidden: { opacity: 0, x: '100%' },
     visible: { opacity: 1, x: 0 },
   }
 
@@ -45,15 +56,16 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
       variants={variants}
       transition={{ duration: 0.2 }}
       role="menu"
+      onClick={(e) => e.stopPropagation()}
     >
-      <ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
+      <ul className="flex flex-col gap-5 items-end">
         {MENU_OPTIONS.sort(sortAscending).map((menuItem: MenuItem) => (
           <li key={menuItem.id}>
             <a
               href={menuItem.url}
               title={menuItem.name}
               onClick={handleOnClick}
-              className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+              className="relative text-xl hover:no-underline after:absolute after:right-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
             >
               {menuItem.name}
             </a>
@@ -69,19 +81,18 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
       animate={animate}
       exit={exit}
       transition={transition}
+      onClick={(e) => e.stopPropagation()}
+      className="flex justify-end"
     >
-      <Link
+      <a
         href={SITE_ROUTES.home}
         title={SITE_STRINGS.backToMainPageTitle}
-        className="icon-link-btn"
+        className="icon-link-btn flex items-center gap-2"
+        onClick={handleBackClick}
       >
-        <div>
-          <span>
-            <BsArrowReturnLeft />
-          </span>
-          {SITE_STRINGS.backToMainText}
-        </div>
-      </Link>
+        <BsArrowReturnLeft className="text-xl" />
+        <span>{SITE_STRINGS.backToMainText}</span>
+      </a>
     </m.div>
   )
 

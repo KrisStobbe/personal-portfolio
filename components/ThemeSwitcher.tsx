@@ -8,11 +8,14 @@ import { animate, exit, initial, transition } from 'utils'
 
 export const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false)
-  const { theme, setTheme, systemTheme } = useTheme()
+  const { theme, setTheme } = useTheme()
 
-  const currentTheme = theme === 'system' ? systemTheme : theme
-
-  useEffect(() => setMounted(true), [])
+  useEffect(() => {
+    setMounted(true)
+    if (!theme) {
+      setTheme('dark')
+    }
+  }, [theme, setTheme])
 
   if (!mounted) {
     return null
@@ -21,13 +24,13 @@ export const ThemeSwitcher = () => {
   return (
     <LazyMotion features={domAnimation}>
       <m.button
-        onClick={() => setTheme(currentTheme === 'dark' ? 'light' : 'dark')}
+        onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
         initial={initial}
         animate={animate}
         exit={exit}
         transition={transition}
       >
-        {currentTheme === 'dark' ? <BsSun /> : <BsMoon />}
+        {theme === 'dark' ? <BsSun /> : <BsMoon />}
       </m.button>
     </LazyMotion>
   )
