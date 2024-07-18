@@ -1,10 +1,15 @@
 import React, { useRef, useState } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
-import { TbBrandTypescript, TbBrandNextjs, TbBrandNodejs } from 'react-icons/tb' 
+import { TbBrandTypescript, TbBrandNextjs, TbBrandNodejs } from 'react-icons/tb'
 import { FaReact } from 'react-icons/fa'
 import { FilterButton } from './FilterButton'
 
-export type FilterOption = 'TypeScript' | 'React' | 'Next.js' | 'Node.js' | undefined 
+export type FilterOption =
+  | 'TypeScript'
+  | 'React'
+  | 'Next.js'
+  | 'Node.js'
+  | undefined
 
 interface FilterProps {
   onClick?: (filter: FilterOption) => void
