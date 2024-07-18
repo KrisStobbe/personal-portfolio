@@ -57,6 +57,7 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
               additionalClass="gallery-item"
               lazyLoad={true}
               showIndex={true}
+              showFullscreenButton={false}
             />
           </Suspense>
         </div>
