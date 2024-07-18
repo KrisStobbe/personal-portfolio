@@ -4,8 +4,8 @@ import ProjectItem from 'app/sections/project/ProjectItem'
 export interface IProject {
   description: string
   images: string[]
-  liveUrl?: string
-  repoUrl?: string
+  liveUrl?: string | null
+  repoUrl?: string | null
   stack: string[]
   title: string
   createdAt: string
@@ -17,8 +17,8 @@ interface IProjects {
 
 export function Projects({ projects }: IProjects) {
   const sortedProjects = projects?.sort((a, b) => {
-    const dateA = new Date(a?.createdAt)
-    const dateB = new Date(b?.createdAt)
+    const dateB = new Date(a?.createdAt)
+    const dateA = new Date(b?.createdAt)
     return dateA.getTime() - dateB.getTime()
   })
 

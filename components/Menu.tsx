@@ -46,7 +46,17 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
       transition={{ duration: 0.2 }}
       role="menu"
     >
-      <ul className="flex justify-center gap-5 flex-col md:flex-row items-start md:items-center">
+      <ul className="flex flex-col gap-5 items-start">
+        <li key="home">
+          <Link
+            href={SITE_ROUTES.home}
+            title="Home"
+            onClick={handleOnClick}
+            className="relative text-xl hover:no-underline after:absolute after:left-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+          >
+            Home
+          </Link>
+        </li>
         {MENU_OPTIONS.sort(sortAscending).map((menuItem: MenuItem) => (
           <li key={menuItem.id}>
             <a

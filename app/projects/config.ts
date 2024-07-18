@@ -8,10 +8,10 @@ const project1: IProject = {
     '/assets/projects/flex-software/image-2.png',
   ],
   liveUrl: 'https://flexsoftware.org',
-  repoUrl: 'https://github.com/Flex-Software-LLC/flex-portfolio-frontend',
-  stack: ['React', 'JavaScript', 'Chakra UI'],
+  repoUrl: null,
+  stack: ['React', 'TypeScript', 'Chakra UI'],
   title: 'Flex Software',
-  createdAt: '2023-08-01T00:00:00Z',
+  createdAt: '2024-06-01T00:00:00Z',
 }
 
 const project2: IProject = {
@@ -23,19 +23,30 @@ const project2: IProject = {
   ],
   liveUrl: 'https://next-dashboard-cyan-two.vercel.app/pokemons?page=1',
   repoUrl: 'https://github.com/KrisStobbe/next-dashboard',
-  stack: ['React', 'Node.js', 'JavaScript', 'Next.js'],
+  stack: ['React', 'Node.js', 'TypeScript', 'Next.js'],
   title: 'Analytics Dashboard',
-  createdAt: '2023-12-01T00:00:00Z',
+  createdAt: '2024-06-01T00:00:00Z',
 }
 
 const project3: IProject = {
+  description:
+    'An analytics dashboard for a provider with a supporting Express REST API.',
+  images: ['/assets/projects/provider-analysis/image-1.png'],
+  liveUrl: null,
+  repoUrl: 'https://github.com/KrisStobbe/node-react-dashboard',
+  stack: ['React', 'Node.js', 'Express.js', 'TypeScript', 'Tailwind CSS'],
+  title: 'Provider Analytics',
+  createdAt: '2024-03-05T00:00:00Z',
+}
+
+const project4: IProject = {
   description: 'A personal portfolio website.',
   images: ['/assets/projects/portfolio/image-1.png'],
   liveUrl: 'https://krisstobbe.com',
   repoUrl: 'https://github.com/KrisStobbe/personal-portfolio',
-  stack: ['React', 'Next.js', 'Node.js', 'JavaScript', 'Tailwind CSS'],
+  stack: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind CSS'],
   title: 'Personal Portfolio',
-  createdAt: '2023-12-05T00:00:00Z',
+  createdAt: '2023-05-05T00:00:00Z',
 }
 
-export const projects: IProject[] = [project1, project2, project3]
+export const projects: IProject[] = [project1, project2, project3, project4]

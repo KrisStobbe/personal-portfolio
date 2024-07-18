@@ -57,6 +57,7 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
               additionalClass="gallery-item"
               lazyLoad={true}
               showIndex={true}
+              showFullscreenButton={false}
             />
           </Suspense>
         </div>
@@ -88,24 +89,24 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
           )}
 
           <div className="flex-center gap-10">
-            {repoUrl && (
-              <a
+        {repoUrl && (
+            <a
                 href={repoUrl}
                 target="_blank"
                 className="icon-link-btn"
                 title="Go to Github repository"
-              >
+            >
                 <VscSourceControl />
                 <span>Source</span>
-              </a>
-            )}
-            {liveUrl && (
-              <a
+            </a>
+        )}
+        {liveUrl && (
+            <a
                 href={liveUrl}
                 target="_blank"
                 className="icon-link-btn"
                 title="Go to live address"
-              >
+            >
                 <FiExternalLink />
                 <span>Demo</span>
               </a>
