@@ -27,7 +27,7 @@ export function ProjectsSection() {
             }
           >
             <ErrorBoundary FallbackComponent={Error}>
-              {projects && <Projects projects={projects} />}
+              {projects && <Projects projects={projects.slice(0, 3)} />}
             </ErrorBoundary>
           </Suspense>
 
