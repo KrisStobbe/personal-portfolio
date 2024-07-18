@@ -17,8 +17,16 @@ export const MobileMenu: FunctionComponent = () => {
   }, [isOpen])
 
   const variants = {
-    hidden: { opacity: 0, x: '-100%' },
+    hidden: { opacity: 0, x: '100%' },
     visible: { opacity: 1, x: 0 },
+  }
+
+  const handleBackdropClick = (
+    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  ) => {
+    if (e.target === e.currentTarget) {
+      onClose()
+    }
   }
 
   return (
@@ -38,12 +46,13 @@ export const MobileMenu: FunctionComponent = () => {
       <AnimatePresence>
         {isOpen && (
           <m.div
-            className="backdrop-blur-md fixed left-0 right-0 top-0 min-h-screen z-50"
+            className="fixed inset-0 z-50 backdrop-blur-md"
             initial="hidden"
             animate="visible"
             exit="hidden"
             variants={variants}
             transition={{ duration: 0.2 }}
+            onClick={handleBackdropClick}
           >
             <header className="p-6 flex items-center justify-between border-b border-b-brand-light z-10">
               <ConnectMedia />
