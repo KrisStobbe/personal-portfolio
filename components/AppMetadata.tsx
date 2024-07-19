@@ -1,6 +1,6 @@
 const author = 'Kristoffer Stobbe'
 const description =
-  'Senior Software Engineer with a rich background in full-stack development, data analytics, and technical support. Passionate about developing innovative software solutions, optimizing data-driven processes, and enhancing user experience. Holds an MS in Data Analytics from Georgia Institute of Technology and enjoys delving into philosophy and science, alongside playing the electric guitar.'
+  'Senior Software Engineer with a background in full-stack development, data analytics, and technical support. Passionate about developing innovative software solutions, optimizing data-driven processes, and enhancing user experience. Holds an MS in Data Analytics from Georgia Institute of Technology and enjoys delving into philosophy and science, alongside playing the electric guitar.'
 const url = 'https://krisstobbe.com/'
 
 interface OpenGraphImage {
@@ -67,13 +67,13 @@ export const AppMetadata: AppMetadata = {
     siteName: `${author} | Portfolio`,
     images: [
       {
-        url: 'https://Kristoffer-Stobbe.netlify.app/screenshot.webp',
+        url: 'https://krisstobbe.com/assets/portfolio.png',
         width: 800,
         height: 600,
         alt: 'My personal portfolio website',
       },
       {
-        url: 'https://Kristoffer-Stobbe.netlify.app/screenshot.webp',
+        url: 'https://krisstobbe.com/assets/portfolio.png',
         width: 1800,
         height: 1600,
         alt: 'My personal portfolio website',
