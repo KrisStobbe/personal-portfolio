@@ -15,9 +15,8 @@ interface Technology {
 
 export const TechnologiesSection: FunctionComponent = () => {
   const textRef = useRef<HTMLParagraphElement>(null)
-  const stackRef = useRef<HTMLDivElement>(null)
   const isTextInView = useInView(textRef, { once: true })
-  const isStackInView = useInView(stackRef, { once: true })
+  const isStackInView = useInView(textRef, { once: true })
 
   return (
     <LazyMotion features={domAnimation}>
@@ -28,7 +27,7 @@ export const TechnologiesSection: FunctionComponent = () => {
           tabIndex={0}
           className="my-5 text-2xl"
           style={{
-            transform: isTextInView ? 'none' : 'translateX(-200px)',
+            transform: isTextInView ? 'none' : 'translateX(-300px)',
             opacity: isTextInView ? 1 : 0,
             transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
           }}
@@ -41,7 +40,6 @@ export const TechnologiesSection: FunctionComponent = () => {
             {TECHNOLOGIES.map((tech: Technology, index: number) => (
               <div
                 key={tech.category}
-                ref={stackRef}
                 className="flex flex-col gap-4 flex-1 md:flex-auto"
                 style={{
                   transform: isStackInView
