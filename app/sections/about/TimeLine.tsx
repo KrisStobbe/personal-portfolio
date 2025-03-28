@@ -1,11 +1,21 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 
+/**
+ * Interface representing a single timeline item
+ * @interface TimeLineItem
+ */
 interface TimeLineItem {
+  /** The year of the timeline event */
   year: number
+  /** The description of the timeline event */
   text: string
 }
 
+/**
+ * Array of timeline events representing career and educational milestones
+ * @constant {TimeLineItem[]}
+ */
 const TimeLineData: TimeLineItem[] = [
   {
     year: 2018,
@@ -31,18 +41,48 @@ const TimeLineData: TimeLineItem[] = [
     year: 2023,
     text: 'Completed M.S. in Data Analytics from Georgia Institute of Technology.',
   },
+  {
+    year: 2024,
+    text: 'Joined FloQast as a Software Engineer, working on building scalable accounting software.',
+  },
 ]
 
+/**
+ * TimeLine component that displays a horizontally scrollable timeline of career events
+ * 
+ * Features:
+ * - Smooth horizontal scrolling with snap points
+ * - Animated entrance effects for timeline items
+ * - Responsive design with different widths for different screen sizes
+ * - Interactive click-to-scroll functionality
+ * - Automatic scroll reset on window resize
+ * 
+ * @returns {JSX.Element} A scrollable timeline of career events
+ */
 export function TimeLine() {
+  /** Current color mode for styling */
   const colorMode = 'dark'
+  /** State to track the currently active timeline item */
   const [, setActiveItem] = useState<number>(0)
+  /** Reference to the scrollable timeline container */
   const carouselRef = useRef<HTMLUListElement>(null)
+  /** Tracks if the timeline is in view for animation triggers */
   const isInView = useInView(carouselRef, { once: true })
 
+  /**
+   * Scrolls the timeline container to a specific position
+   * @param {HTMLUListElement | null} node - The timeline container element
+   * @param {number} left - The scroll position in pixels
+   */
   const scroll = (node: HTMLUListElement | null, left: number) => {
     node?.scrollTo({ left, behavior: 'smooth' })
   }
 
+  /**
+   * Handles click events on timeline items to scroll to their position
+   * @param {React.MouseEvent<HTMLLIElement>} e - The click event
+   * @param {number} i - The index of the clicked item
+   */
   const handleClick = (e: React.MouseEvent<HTMLLIElement>, i: number) => {
     e.preventDefault()
     if (carouselRef.current) {
@@ -53,6 +93,9 @@ export function TimeLine() {
     }
   }
 
+  /**
+   * Updates the active item based on scroll position
+   */
   const handleScroll = () => {
     if (carouselRef.current) {
       const index = Math.round(
@@ -64,6 +107,7 @@ export function TimeLine() {
     }
   }
 
+  /** Effect to handle window resize events */
   useEffect(() => {
     const handleResize = () => {
       scroll(carouselRef.current, 0)
