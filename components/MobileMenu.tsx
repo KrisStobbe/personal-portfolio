@@ -6,21 +6,35 @@ import { ConnectMedia, Menu } from 'components'
 import { m, AnimatePresence, domAnimation, LazyMotion } from 'framer-motion'
 import { IoMdClose } from 'react-icons/io'
 
+/**
+ * MobileMenu component that provides a responsive mobile navigation menu
+ * 
+ * @returns {JSX.Element} A mobile-friendly navigation menu
+ */
 export const MobileMenu: FunctionComponent = () => {
+  /** State to track menu open/close status */
   const [isOpen, setIsOpen] = useState(false)
 
+  /** Closes the mobile menu */
   const onClose = () => setIsOpen(false)
+  /** Opens the mobile menu */
   const onOpen = () => setIsOpen(true)
 
+  /** Effect to handle body scroll lock when menu is open */
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'auto'
   }, [isOpen])
 
+  /** Animation variants for menu transitions */
   const variants = {
     hidden: { opacity: 0, x: '100%' },
     visible: { opacity: 1, x: 0 },
   }
 
+  /**
+   * Handles clicks on the backdrop to close the menu
+   * @param {React.MouseEvent<HTMLDivElement, MouseEvent>} e - Click event
+   */
   const handleBackdropClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {

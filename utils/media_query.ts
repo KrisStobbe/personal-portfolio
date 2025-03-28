@@ -1,11 +1,22 @@
 import { useCallback, useEffect, useState } from 'react'
 
-// Define the types for function parameters and return value
+/**
+ * Custom hook that tracks the state of a media query match.
+ * Provides a boolean value indicating whether the media query matches.
+ * 
+ * @param {string} matchMediaQuery - The media query to match against (default: 'max-width: 767px')
+ * @returns {boolean} Whether the media query matches the current viewport
+ */
 export const useMediaQuery = (
   matchMediaQuery: string = 'max-width: 767px',
 ): boolean => {
+  /** State to track whether the media query matches */
   const [targetReached, setTargetReached] = useState<boolean>(false)
 
+  /**
+   * Callback function to update the target state when media query matches change
+   * @param {MediaQueryListEvent} e - The media query list event
+   */
   const updateTarget = useCallback((e: MediaQueryListEvent) => {
     setTargetReached(e.matches)
   }, [])

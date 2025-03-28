@@ -5,9 +5,23 @@ import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { ConnectMedia } from './ConnectMedia'
 import ScrollTop from './ScrollTop'
 
+/**
+ * AppFooter component that displays the site footer.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <AppFooter />
+ * ```
+ * 
+ * @returns {JSX.Element} The site footer with social links and navigation
+ */
 export const AppFooter: FunctionComponent = () => {
+  /** Reference to the footer container for animation */
   const footerRef = useRef<HTMLDivElement>(null)
+  /** Tracks if the footer is in view for animation triggers */
   const isInView = useInView(footerRef, { once: true })
+  /** Current year for copyright notice */
   const year = new Date().getFullYear()
 
   return (

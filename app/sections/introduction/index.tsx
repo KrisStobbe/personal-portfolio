@@ -7,10 +7,25 @@ import { WelcomeAnimation } from './IntroAnimation'
 import { useScrollTo } from 'hooks'
 import { useMediaQuery } from 'utils'
 
+/**
+ * Props for the TextElement component
+ * @interface TextElementProps
+ */
 interface TextElementProps {
+  /** The text content to be displayed with the first word emphasized */
   element: string
 }
 
+/**
+ * TextElement component that displays text with the first word emphasized
+ * Features:
+ * - Animated entrance effect
+ * - First word bold styling
+ * - Responsive text sizing
+ * 
+ * @param {TextElementProps} props - Component props containing the text element
+ * @returns {JSX.Element} A styled text element with animation
+ */
 const TextElement: FunctionComponent<TextElementProps> = ({ element }) => {
   const firstWord = element.split(' ')[0]
   const restWords = element.substring(firstWord.length)
@@ -35,14 +50,33 @@ const TextElement: FunctionComponent<TextElementProps> = ({ element }) => {
   )
 }
 
+/**
+ * WelcomeSection component that serves as the main introduction section
+ * 
+ * Features:
+ * - Animated text transitions
+ * - Rotating skill descriptions
+ * - Responsive layout with grid system
+ * - Interactive scroll navigation
+ * - Conditional animation display based on screen size
+ * 
+ * @returns {JSX.Element} The welcome section with animated content
+ */
 export function WelcomeSection() {
+  /** Reference to the main content container */
   const ref = useRef<HTMLDivElement>(null)
+  /** Reference to the introduction section */
   const introRef = useRef<HTMLElement>(null)
+  /** Tracks if the content is in view for animation triggers */
   const isInView = useInView(ref, { once: true })
+  /** Custom hook for smooth scrolling */
   const { scrollToEl } = useScrollTo()
+  /** Media query hook for responsive design */
   const isTabletUp = useMediaQuery('min-width: 768px')
 
+  /** State for tracking current skill text index */
   const [count, setCount] = useState<number>(0)
+  /** Array of rotating skill descriptions */
   const [text] = useState<string[]>([
     'design dynamic applications',
     'build data pipelines',
@@ -51,11 +85,16 @@ export function WelcomeSection() {
     'develop AI-driven solutions',
   ])
 
+  /**
+   * Handles click events for smooth scrolling
+   * @param {React.MouseEvent<HTMLAnchorElement>} e - The click event
+   */
   const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     scrollToEl(e)
   }
 
+  /** Effect to handle rotating text animation */
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevCount) => (prevCount + 1) % text.length)

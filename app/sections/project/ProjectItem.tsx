@@ -8,19 +8,43 @@ import { FiExternalLink } from 'react-icons/fi'
 import { IProject } from 'app/projects/components/Projects'
 import 'react-image-gallery/styles/css/image-gallery.css'
 
+/**
+ * Props for the ProjectItem component
+ * @interface ProjectItemProps
+ */
 interface ProjectItemProps {
+  /** Project data from the IProject interface */
   project: IProject
+  /** Index of the project in the grid for staggered animation */
   index: number
 }
 
+/**
+ * ProjectItem component that displays a single project card
+ * 
+ * Features:
+ * - Animated entrance effect with staggered timing
+ * - Image gallery with lazy loading
+ * - Project details display
+ * - Technology stack tags
+ * - Links to repository and live demo
+ * - Responsive design
+ * - Dark mode support
+ * 
+ * @param {ProjectItemProps} props - Component props containing project data and index
+ * @returns {JSX.Element} A styled project card with animations
+ */
 const ProjectItem: FunctionComponent<ProjectItemProps> = ({
   project,
   index,
 }) => {
   const { description, images, liveUrl, repoUrl, stack, title } = project
+  /** Reference to the project card container */
   const cardRef = useRef<HTMLDivElement>(null)
+  /** Tracks if the card is in view for animation triggers */
   const isInView = useInView(cardRef, { once: true })
 
+  /** Transforms project images into gallery format */
   const galleryImages = images.map((img) => ({
     original: img,
     loading: 'lazy' as 'lazy' | 'eager' | undefined,

@@ -9,23 +9,54 @@ import { BsArrowReturnLeft } from 'react-icons/bs'
 import { initial, animate, exit, transition } from 'utils'
 import { MENU_OPTIONS, SITE_ROUTES, SITE_STRINGS } from '../constants'
 
+/**
+ * Interface representing a single menu item
+ * @interface MenuItem
+ */
 interface MenuItem {
+  /** Unique identifier for the menu item */
   id: string
+  /** URL path for the menu item */
   url: string
+  /** Display name for the menu item */
   name: string
 }
 
+/**
+ * Props for the Menu component
+ * @interface MenuProps
+ */
 interface MenuProps {
+  /** Optional callback function for click events */
   onClick?: () => void
 }
 
+/**
+ * Menu component that provides navigation functionality
+ * 
+ * @param {MenuProps} props - Component props containing click handler
+ * @returns {JSX.Element} A navigation menu with animations
+ */
 export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
+  /** Current pathname from Next.js router */
   const pathname = usePathname()
+  /** Next.js router instance */
   const router = useRouter()
+  /** Custom hook for smooth scrolling */
   const { scrollToEl } = useScrollTo()
 
+  /**
+   * Sorts menu items in ascending order by ID
+   * @param {MenuItem} a - First menu item
+   * @param {MenuItem} b - Second menu item
+   * @returns {number} Sort order (-1, 0, or 1)
+   */
   const sortAscending = (a: MenuItem, b: MenuItem) => a.id.localeCompare(b.id)
 
+  /**
+   * Handles menu item click events
+   * @param {React.MouseEvent<HTMLAnchorElement, MouseEvent>} e - Click event
+   */
   const handleOnClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
@@ -33,6 +64,10 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
     window.setTimeout(() => onClick(), 350)
   }
 
+  /**
+   * Handles back button click events
+   * @param {React.MouseEvent<HTMLAnchorElement, MouseEvent>} e - Click event
+   */
   const handleBackClick = (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
@@ -43,6 +78,7 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
     }, 350)
   }
 
+  /** Animation variants for menu transitions */
   const variants = {
     hidden: { opacity: 0, x: '100%' },
     visible: { opacity: 1, x: 0 },

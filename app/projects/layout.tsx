@@ -10,14 +10,27 @@ import { IProject } from './components/Projects'
 import { FilterOption } from './components/Filter'
 import { projects } from './config'
 
+/**
+ * Projects page layout component that handles project filtering and display
+ * 
+ * @returns {JSX.Element} The projects page layout with filtering capabilities
+ */
 export default function Page() {
+  /** Current selected category for filtering projects */
   const [category, setCategory] = useState<FilterOption>(undefined)
 
-  // Filter the projects based on the selected category
+  /**
+   * Filters the projects based on the selected category
+   * If no category is selected, returns all projects
+   */
   const filteredProjects: IProject[] = category
     ? projects.filter((project) => project.stack.includes(category))
     : projects
 
+  /**
+   * Updates the selected category when a filter is clicked
+   * @param {FilterOption} filter - The selected category to filter by
+   */
   const onClick = (filter: FilterOption) => setCategory(filter)
 
   return (

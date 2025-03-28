@@ -5,9 +5,17 @@ import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TimeLine } from './TimeLine'
 import Link from 'next/link'
+import Image from 'next/image'
 
+/**
+ * AboutSection component that displays personal information and professional background
+ * 
+ * @returns {JSX.Element} The about section with personal information and timeline
+ */
 export function AboutSection() {
+  /** Reference to the animated content container */
   const ref = useRef<HTMLDivElement>(null)
+  /** Tracks if the content is in view for animation triggers */
   const isInView = useInView(ref, { once: true })
 
   return (
@@ -27,10 +35,12 @@ export function AboutSection() {
           >
             {/* Circular Image */}
             <div className="pt-2 mb-3" style={{ display: 'flex' }}>
-              <img
+              <Image
                 src="/assets/profile/kris-profile.webp"
                 alt="Kristoffer's Profile"
-                style={{ width: '150px', borderRadius: '50%' }}
+                width={150}
+                height={150}
+                style={{ borderRadius: '50%' }}
               />
             </div>
 

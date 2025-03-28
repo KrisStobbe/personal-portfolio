@@ -5,9 +5,19 @@ import Link from 'next/link'
 import { useScrollTo } from 'hooks'
 import { IoIosArrowDropup } from 'react-icons/io'
 
+/**
+ * ScrollTop component that provides a button to scroll to the top of the page
+ * 
+ * @returns {JSX.Element} A scroll-to-top button with tooltip
+ */
 const ScrollTop: FunctionComponent = () => {
+  /** Custom hook for smooth scrolling */
   const { scrollToEl } = useScrollTo()
 
+  /**
+   * Handles click events for smooth scrolling to top
+   * @param {React.MouseEvent<HTMLAnchorElement, MouseEvent>} e - Click event
+   */
   const onClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
     scrollToEl(e)
   }

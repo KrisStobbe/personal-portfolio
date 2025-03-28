@@ -6,10 +6,18 @@ import { useEffect, useState } from 'react'
 import { domAnimation, LazyMotion, m } from 'framer-motion'
 import { animate, exit, initial, transition } from 'utils'
 
+/**
+ * ThemeSwitcher component that provides dark/light mode toggle functionality
+ * 
+ * @returns {JSX.Element} A theme toggle button with animations
+ */
 export const ThemeSwitcher = () => {
+  /** State to track component mounting status */
   const [mounted, setMounted] = useState(false)
+  /** Theme context from next-themes */
   const { theme, setTheme } = useTheme()
 
+  /** Effect to handle component mounting and default theme */
   useEffect(() => {
     setMounted(true)
     if (!theme) {

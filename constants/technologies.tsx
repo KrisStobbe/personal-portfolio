@@ -29,7 +29,36 @@ import {
 } from 'react-icons/si'
 import { FaChartColumn } from 'react-icons/fa6'
 
-export const TECHNOLOGIES = [
+/**
+ * Interface representing a technology item with name and icon
+ * @interface TechnologyItem
+ */
+interface TechnologyItem {
+  /** Name of the technology */
+  name: string
+  /** React component for the technology icon */
+  icon: JSX.Element
+}
+
+/**
+ * Interface representing a category of technologies
+ * @interface TechnologyCategory
+ */
+interface TechnologyCategory {
+  /** Name of the technology category */
+  category: string
+  /** Array of technology items in this category */
+  items: TechnologyItem[]
+}
+
+/**
+ * Array of technology categories and their associated items.
+ * Used to display the technology stack in the portfolio.
+ * 
+ * @constant
+ * @type {TechnologyCategory[]}
+ */
+export const TECHNOLOGIES: TechnologyCategory[] = [
   {
     category: 'Frontend',
     items: [

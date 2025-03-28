@@ -2,11 +2,21 @@ import { useRef } from 'react'
 import { useInView } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
+/**
+ * WelcomeAnimation component that displays an animated SVG background
+ * 
+ * @returns {JSX.Element} An animated SVG background element
+ */
 export function WelcomeAnimation() {
+  /** Reference to the animation container */
   const ref = useRef(null)
+  /** Tracks if the animation is in view for entrance effect */
   const isInView = useInView(ref, { once: true })
+  /** Theme context for color mode */
   const { theme, systemTheme } = useTheme()
+  /** Determines the current color mode */
   const colorMode = theme === 'system' ? systemTheme : theme
+  /** Boolean indicating if dark theme is active */
   const darkThemeColor = colorMode === 'dark'
 
   return (

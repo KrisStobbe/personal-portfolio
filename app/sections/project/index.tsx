@@ -8,8 +8,23 @@ import { Projects } from '../../projects/components/Projects'
 import { SITE_ROUTES } from '../../../constants'
 import { projects } from 'app/projects/config'
 
+/**
+ * ProjectsSection component that displays a preview of the latest projects
+ * 
+ * Features:
+ * - Displays top 3 projects from the projects list
+ * - Animated entrance effects
+ * - Loading state with Suspense
+ * - Error boundary for graceful error handling
+ * - "More projects" button with animation
+ * - Responsive layout
+ * 
+ * @returns {JSX.Element} A section displaying the latest projects with navigation
+ */
 export function ProjectsSection() {
+  /** Reference to the "More projects" button for animation */
   const btnRef = useRef<HTMLAnchorElement>(null)
+  /** Tracks if the button is in view for animation triggers */
   const isBtnInView = useInView(btnRef, { once: true })
 
   return (

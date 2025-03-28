@@ -6,6 +6,17 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { initial, animate, exit, transition } from 'utils/motions'
 import { SITE_ROUTES, SITE_STRINGS } from '../constants'
 
+/**
+ * Logo component that displays the site logo with animations.
+ * 
+ * @component
+ * @example
+ * ```tsx
+ * <Logo />
+ * ```
+ * 
+ * @returns {JSX.Element} An animated site logo with navigation
+ */
 export const Logo: FunctionComponent = () => {
   return (
     <LazyMotion features={domAnimation}>

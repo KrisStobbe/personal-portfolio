@@ -3,19 +3,39 @@ import { LazyMotion, domAnimation, useInView } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TECHNOLOGIES } from '../../../constants'
 
+/**
+ * Interface representing a single technology item
+ * @interface TechItem
+ */
 interface TechItem {
+  /** Name of the technology */
   name: string
+  /** Icon component representing the technology */
   icon: JSX.Element
 }
 
+/**
+ * Interface representing a technology category
+ * @interface Technology
+ */
 interface Technology {
+  /** Name of the technology category */
   category: string
+  /** Array of technology items in this category */
   items: TechItem[]
 }
 
+/**
+ * TechnologiesSection component that displays a grid of technology categories
+ * 
+ * @returns {JSX.Element} A section displaying technology categories and items
+ */
 export const TechnologiesSection: FunctionComponent = () => {
+  /** Reference to the introduction text for animation */
   const textRef = useRef<HTMLParagraphElement>(null)
+  /** Tracks if the text is in view for animation triggers */
   const isTextInView = useInView(textRef, { once: true })
+  /** Tracks if the technology stack is in view for animation triggers */
   const isStackInView = useInView(textRef, { once: true })
 
   return (
