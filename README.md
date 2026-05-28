@@ -31,6 +31,18 @@ or if you use yarn:
 yarn
 ```
 
+### Environment variables
+
+The "Ask my work" widget calls the Anthropic API server-side. Copy `.env.local.example` to `.env.local` and set:
+
+```
+ANTHROPIC_API_KEY=sk-ant-...
+```
+
+Get a key from https://console.anthropic.com/. The widget degrades gracefully when the key is unset (it shows a configuration message instead of streaming a response).
+
+For production (Vercel), add `ANTHROPIC_API_KEY` to the project's environment variables.
+
 ## Development
 
 To start the development server:

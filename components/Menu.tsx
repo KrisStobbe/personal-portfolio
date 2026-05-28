@@ -94,14 +94,14 @@ export const Menu: FunctionComponent<MenuProps> = ({ onClick = () => {} }) => {
       role="menu"
       onClick={(e) => e.stopPropagation()}
     >
-      <ul className="flex flex-col gap-5 items-end">
+      <ul className="flex flex-col gap-1">
         {MENU_OPTIONS.sort(sortAscending).map((menuItem: MenuItem) => (
           <li key={menuItem.id}>
             <a
               href={menuItem.url}
               title={menuItem.name}
               onClick={handleOnClick}
-              className="relative text-xl hover:no-underline after:absolute after:right-0 after:-bottom-[3px] after:h-[2px] after:w-0 after:bg-current after:transition-width after:duration-300 after:ease-in-out hover:after:w-full"
+              className="block px-3 py-2.5 -mx-3 rounded-md text-base font-medium opacity-85 hover:opacity-100 hover:bg-cobalt-700/8 dark:hover:bg-cobalt-400/8 hover:text-cobalt-700 dark:hover:text-cobalt-400 transition-colors"
             >
               {menuItem.name}
             </a>

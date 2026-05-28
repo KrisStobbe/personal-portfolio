@@ -1,8 +1,55 @@
 import { IProject } from './components/Projects'
 
-const project1: IProject = {
+const floqastReconciliation: IProject = {
+  caseStudy: true,
+  context: 'FloQast · 2025',
+  title: 'Event-driven reconciliation engine',
   description:
-    'A business website for Flex Software LLC, a leading provider of software development services.',
+    'Leading design of an event-driven reconciliation engine serving FloQast’s largest enterprise customers. Decomposed a synchronous monolith into a queue-backed, idempotent pipeline that scales horizontally per customer.',
+  impact:
+    'Unblocks the enterprise tier by making reconciliation throughput predictable at month-end close — the highest-load window in our customers’ calendar.',
+  images: [],
+  liveUrl: null,
+  repoUrl: null,
+  stack: ['TypeScript', 'Node.js', 'AWS', 'Event-driven', 'DynamoDB'],
+  createdAt: '2025-10-01T00:00:00Z',
+}
+
+const floqastAiGlMapping: IProject = {
+  caseStudy: true,
+  context: 'FloQast · 2024–2025',
+  title: 'AI-driven GL-mapping tool',
+  description:
+    'Designed and shipped an AI-driven general-ledger mapping tool that suggests account mappings for new customers during onboarding using LLM-backed classification with human-in-the-loop review.',
+  impact:
+    'Earned the company’s Operational Excellence Award; cut a previously manual onboarding step into a guided, reviewable workflow.',
+  images: [],
+  liveUrl: null,
+  repoUrl: null,
+  stack: ['TypeScript', 'React', 'Node.js', 'OpenAI', 'AWS'],
+  createdAt: '2024-09-01T00:00:00Z',
+}
+
+const sunpowerLoanApp: IProject = {
+  caseStudy: true,
+  context: 'SunPower · 2022',
+  title: 'React financial app for solar loans',
+  description:
+    'Led the build of a React-powered financial application backed by a RESTful API. Owned architecture, frontend, and integration with the loan-servicing backend.',
+  impact:
+    'Powering $2M+ in annual solar loan volume; the launch was the milestone for my promotion to Sr. Software Engineer.',
+  images: [],
+  liveUrl: null,
+  repoUrl: null,
+  stack: ['React', 'TypeScript', 'REST API', 'Java Spring', 'Oracle'],
+  createdAt: '2022-01-15T00:00:00Z',
+}
+
+const flexSoftware: IProject = {
+  context: 'Side project · 2024',
+  description:
+    'Business website for Flex Software LLC, a provider of software development services.',
+  impact: 'Designed, built, and shipped solo end-to-end.',
   images: [
     '/assets/projects/flex-software/image-1.png',
     '/assets/projects/flex-software/image-2.png',
@@ -14,9 +61,11 @@ const project1: IProject = {
   createdAt: '2024-06-01T00:00:00Z',
 }
 
-const project2: IProject = {
+const analyticsDashboard: IProject = {
+  context: 'Side project · 2024',
   description:
-    'A dashboard that allows users to view their favorite pokemon and their stats.',
+    'A Next.js analytics dashboard demonstrating server components, server-side filtering, and pagination over a public dataset.',
+  impact: 'Showcase of Next.js App Router patterns end-to-end.',
   images: [
     '/assets/projects/dashboard/image-1.png',
     '/assets/projects/dashboard/image-2.png',
@@ -28,9 +77,11 @@ const project2: IProject = {
   createdAt: '2024-06-01T00:00:00Z',
 }
 
-const project3: IProject = {
+const providerAnalytics: IProject = {
+  context: 'Side project · 2024',
   description:
-    'An analytics dashboard for a provider with a supporting Express REST API.',
+    'An analytics dashboard for a provider, served by a supporting Express REST API. Full-stack TypeScript end-to-end.',
+  impact: 'Reference architecture for small full-stack TS services.',
   images: ['/assets/projects/provider-analysis/image-1.png'],
   liveUrl: null,
   repoUrl: 'https://github.com/KrisStobbe/node-react-dashboard',
@@ -39,14 +90,25 @@ const project3: IProject = {
   createdAt: '2024-03-05T00:00:00Z',
 }
 
-const project4: IProject = {
-  description: 'A personal portfolio website.',
+const personalPortfolio: IProject = {
+  context: 'Open source · 2023',
+  description:
+    'This site. Next.js 14 App Router, Tailwind, framer-motion, and a Claude-powered Ask-my-work widget.',
+  impact: 'Iterating on it in public — see GitHub for the commit history.',
   images: ['/assets/projects/portfolio/image-1.png'],
   liveUrl: 'https://krisstobbe.com',
   repoUrl: 'https://github.com/KrisStobbe/personal-portfolio',
-  stack: ['React', 'Next.js', 'Node.js', 'TypeScript', 'Tailwind CSS'],
+  stack: ['React', 'Next.js', 'TypeScript', 'Tailwind', 'Anthropic SDK'],
   title: 'Personal Portfolio',
   createdAt: '2023-05-05T00:00:00Z',
 }
 
-export const projects: IProject[] = [project1, project2, project3, project4]
+export const projects: IProject[] = [
+  flexSoftware,
+  floqastReconciliation,
+  floqastAiGlMapping,
+  sunpowerLoanApp,
+  analyticsDashboard,
+  providerAnalytics,
+  personalPortfolio,
+]

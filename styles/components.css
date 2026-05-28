@@ -8,13 +8,16 @@
     @apply max-w-7xl mx-auto px-4;
   }
   mark {
-    @apply bg-transparent text-blue-light;
+    @apply bg-transparent text-cobalt-700 dark:text-cobalt-400;
   }
   .btn {
-    @apply min-h-[40px] px-4 rounded-md bg-blue-light text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-blue-normal  focus:ring-1 focus:ring-blue-normal;
+    @apply min-h-[40px] px-4 rounded-md bg-cobalt-600 text-white inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:bg-cobalt-700 focus:ring-2 focus:ring-cobalt-400;
+  }
+  .btn-ghost {
+    @apply min-h-[40px] px-4 rounded-md border border-cobalt-700/50 dark:border-cobalt-400/40 text-brand-dark dark:text-brand-light inline-flex items-center justify-center whitespace-nowrap align-middle transition-colors duration-200 ease-linear relative hover:border-cobalt-700 dark:hover:border-cobalt-400 hover:bg-cobalt-700/5 dark:hover:bg-cobalt-400/5 focus:ring-2 focus:ring-cobalt-700 dark:focus:ring-cobalt-400;
   }
   .heading-divider {
-    @apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 bg-clip-text text-transparent bg-gradient-to-r from-gray-100 to-gray-50 after:h-[1px] after:flex-1 after:bg-inherited text-brand-dark dark:text-brand-light;
+    @apply flex items-center font-extrabold text-3xl md:text-4xl relative w-full uppercase gap-4 text-brand-dark dark:text-brand-light after:h-[1px] after:flex-1 after:bg-gradient-to-r after:from-cobalt-700 dark:after:from-cobalt-400 after:to-transparent;
   }
   .icon-link-btn {
     @apply flex-center gap-2.5 px-2 p-1 rounded transition-colors hover:bg-badge-light dark:hover:bg-badge-dark;

@@ -6,20 +6,19 @@ import ProjectItem from 'app/sections/project/ProjectItem'
  * @interface IProject
  */
 export interface IProject {
-  /** A brief description of the project */
   description: string
-  /** Array of image URLs associated with the project */
+  /** Headline impact / outcome line, shown beneath the description. Optional. */
+  impact?: string
+  /** Tag shown above the title, e.g. "FloQast · 2024–2025". Optional. */
+  context?: string
   images: string[]
-  /** Optional URL to the live deployment of the project */
   liveUrl?: string | null
-  /** Optional URL to the project's repository */
   repoUrl?: string | null
-  /** Array of technologies used in the project */
   stack: string[]
-  /** Title of the project */
   title: string
-  /** Creation date of the project in ISO string format */
   createdAt: string
+  /** True for case-study cards with no live deployment / no public repo. */
+  caseStudy?: boolean
 }
 
 /**
@@ -50,15 +49,9 @@ interface IProjects {
  * ```
  */
 export function Projects({ projects }: IProjects) {
-  const sortedProjects = projects?.sort((a, b) => {
-    const dateB = new Date(a?.createdAt)
-    const dateA = new Date(b?.createdAt)
-    return dateA.getTime() - dateB.getTime()
-  })
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
-      {sortedProjects?.map((project, index) => (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      {projects?.map((project, index) => (
         <ProjectItem key={project.title} project={project} index={index} />
       ))}
     </div>

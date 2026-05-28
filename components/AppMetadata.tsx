@@ -2,7 +2,7 @@
 const author = 'Kristoffer Stobbe'
 /** Detailed description of the portfolio and author */
 const description =
-  'Senior Software Engineer with a background in full-stack development, data analytics, and technical support. Passionate about developing innovative software solutions, optimizing data-driven processes, and enhancing user experience. Holds an MS in Data Analytics from Georgia Institute of Technology and enjoys delving into philosophy and science, alongside playing the electric guitar.'
+  'Kristoffer Stobbe — Software Engineer building AI-driven and event-driven systems, and full-stack platforms that have moved $2M+ in annual loan volume. MS, Georgia Tech.'
 /** Base URL for the portfolio */
 const url = 'https://krisstobbe.com/'
 
@@ -69,11 +69,6 @@ interface AppMetadata {
   }
   /** Description of the application */
   description: string
-  /** Icon configuration */
-  icons: {
-    /** Path to the favicon */
-    icon: string
-  }
   /** Array of SEO keywords */
   keywords: string[]
   /** Creator of the content */
@@ -103,15 +98,14 @@ export const AppMetadata: AppMetadata = {
     template: `%s | ${author}`,
   },
   description: description,
-  icons: {
-    icon: '/favicon.ico',
-  },
   keywords: [
     'Kristoffer Stobbe',
-    'Kristoffer Stobbe - software developer',
-    'Frontend developer',
-    'Portfolio website',
-    'Frontend Developer Portfolio',
+    'Software Engineer',
+    'Full-stack engineer',
+    'AI engineering',
+    'Event-driven systems',
+    'TypeScript React engineer',
+    'Georgia Tech Data Analytics',
   ],
   creator: author,
   authors: [{ name: author, url: url }],

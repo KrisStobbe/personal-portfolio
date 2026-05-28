@@ -32,7 +32,6 @@ export const HeadingDivider: FunctionComponent<HeadingDividerProps> = ({
     <header className="flex items-center">
       <LazyMotion features={domAnimation}>
         <m.h2
-          tabIndex={0}
           initial={initial}
           animate={animate}
           exit={exit}

@@ -1,6 +1,5 @@
 export const MENU_OPTIONS = [
-  { id: '0', name: 'Introduction', url: '#intro' },
-  { id: '1', name: 'About', url: '#about' },
-  { id: '2', name: 'Projects', url: '#projects' },
-  { id: '3', name: 'Technologies', url: '#tech' },
+  { id: '0', name: 'About', url: '#about' },
+  { id: '1', name: 'Work', url: '#projects' },
+  { id: '2', name: 'Stack', url: '#tech' },
 ]

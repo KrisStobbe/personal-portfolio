@@ -1,86 +1,102 @@
 'use client'
 
 import React, { useEffect, useState, FunctionComponent } from 'react'
-import { BsGrid } from 'react-icons/bs'
+import Link from 'next/link'
+import { HiMenu } from 'react-icons/hi'
+import { IoMdClose } from 'react-icons/io'
 import { ConnectMedia, Menu } from 'components'
 import { m, AnimatePresence, domAnimation, LazyMotion } from 'framer-motion'
-import { IoMdClose } from 'react-icons/io'
 
-/**
- * MobileMenu component that provides a responsive mobile navigation menu
- * 
- * @returns {JSX.Element} A mobile-friendly navigation menu
- */
 export const MobileMenu: FunctionComponent = () => {
-  /** State to track menu open/close status */
   const [isOpen, setIsOpen] = useState(false)
 
-  /** Closes the mobile menu */
   const onClose = () => setIsOpen(false)
-  /** Opens the mobile menu */
   const onOpen = () => setIsOpen(true)
 
-  /** Effect to handle body scroll lock when menu is open */
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+    document.body.style.overflow = isOpen ? 'hidden' : ''
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [isOpen])
 
-  /** Animation variants for menu transitions */
-  const variants = {
-    hidden: { opacity: 0, x: '100%' },
-    visible: { opacity: 1, x: 0 },
-  }
-
-  /**
-   * Handles clicks on the backdrop to close the menu
-   * @param {React.MouseEvent<HTMLDivElement, MouseEvent>} e - Click event
-   */
-  const handleBackdropClick = (
-    e: React.MouseEvent<HTMLDivElement, MouseEvent>,
-  ) => {
-    if (e.target === e.currentTarget) {
-      onClose()
+  useEffect(() => {
+    if (!isOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
     }
-  }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [isOpen])
 
   return (
     <LazyMotion features={domAnimation}>
-      <m.button
-        className="p-2"
+      <button
+        type="button"
         onClick={onOpen}
-        title="Open menu"
-        initial="hidden"
-        animate="visible"
-        exit="hidden"
-        transition={{ delay: 0.2 }}
+        aria-label="Open menu"
+        aria-expanded={isOpen}
+        className="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-cobalt-700/10 dark:hover:bg-cobalt-400/10 transition-colors"
       >
-        <BsGrid />
-      </m.button>
+        <HiMenu size={22} />
+      </button>
 
       <AnimatePresence>
         {isOpen && (
-          <m.div
-            className="fixed inset-0 z-50 backdrop-blur-md"
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={variants}
-            transition={{ duration: 0.2 }}
-            onClick={handleBackdropClick}
-          >
-            <header className="p-6 flex items-center justify-between border-b border-b-brand-light z-10">
-              <ConnectMedia />
-              <button
-                onClick={onClose}
-                className="w-10 h-10 inline-flex items-center justify-center"
-              >
-                <IoMdClose size={24} />
-              </button>
-            </header>
-            <div className="px-6 py-10">
-              <Menu onClick={onClose} />
-            </div>
-          </m.div>
+          <>
+            <m.div
+              key="backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={onClose}
+              className="fixed inset-0 z-[60] bg-black/40 backdrop-blur-sm"
+              aria-hidden="true"
+            />
+            <m.aside
+              key="panel"
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.28, ease: [0.17, 0.55, 0.55, 1] }}
+              className="fixed top-0 right-0 z-[70] h-full w-[min(320px,85vw)] bg-brand-light dark:bg-brand-dark border-l border-cobalt-700/15 dark:border-cobalt-400/15 shadow-2xl flex flex-col"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Navigation menu"
+            >
+              <header className="flex items-center justify-between px-5 py-4 border-b border-cobalt-700/15 dark:border-cobalt-400/15">
+                <span className="text-[11px] uppercase tracking-[0.22em] font-semibold opacity-60">
+                  Menu
+                </span>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  aria-label="Close menu"
+                  className="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-cobalt-700/10 dark:hover:bg-cobalt-400/10 transition-colors"
+                >
+                  <IoMdClose size={22} />
+                </button>
+              </header>
+
+              <div className="px-6 py-8">
+                <Menu onClick={onClose} />
+              </div>
+
+              <div className="mt-auto px-6 py-5 border-t border-cobalt-700/15 dark:border-cobalt-400/15 flex flex-col gap-4">
+                <Link
+                  href="/assets/resume/kristoffer-stobbe-resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={onClose}
+                  className="btn w-full"
+                >
+                  View resume ↗
+                </Link>
+                <ConnectMedia />
+              </div>
+            </m.aside>
+          </>
         )}
       </AnimatePresence>
     </LazyMotion>

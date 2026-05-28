@@ -11,5 +11,9 @@ import { ThemeProvider } from 'next-themes'
  * @returns {JSX.Element} A ThemeProvider component wrapping the children
  */
 export function ThemeContext({ children }) {
-  return <ThemeProvider attribute="class">{children}</ThemeProvider>
+  return (
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      {children}
+    </ThemeProvider>
+  )
 }

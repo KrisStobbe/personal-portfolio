@@ -17,13 +17,9 @@ export const ThemeSwitcher = () => {
   /** Theme context from next-themes */
   const { theme, setTheme } = useTheme()
 
-  /** Effect to handle component mounting and default theme */
   useEffect(() => {
     setMounted(true)
-    if (!theme) {
-      setTheme('dark')
-    }
-  }, [theme, setTheme])
+  }, [])
 
   if (!mounted) {
     return null
@@ -37,6 +33,9 @@ export const ThemeSwitcher = () => {
         animate={animate}
         exit={exit}
         transition={transition}
+        aria-label={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        title={theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'}
+        className="w-9 h-9 inline-flex items-center justify-center rounded-md hover:bg-cobalt-700/10 dark:hover:bg-cobalt-400/10 transition-colors"
       >
         {theme === 'dark' ? <BsSun /> : <BsMoon />}
       </m.button>

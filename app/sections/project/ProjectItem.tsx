@@ -41,15 +41,24 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
   project,
   index,
 }) => {
-  const { description, images, liveUrl, repoUrl, stack, title } = project
+  const {
+    description,
+    impact,
+    context,
+    images,
+    liveUrl,
+    repoUrl,
+    stack,
+    title,
+    caseStudy,
+  } = project
 
-  /** Transforms project images into gallery format with next/image optimization + alt text. */
   const galleryImages: ReactImageGalleryItem[] = images.map((img, i) => ({
     original: img,
     originalAlt: `${title} — screenshot ${i + 1}`,
     loading: 'lazy' as 'lazy' | 'eager' | undefined,
     renderItem: (item) => (
-      <div className="image-gallery-image relative aspect-[12/9.2] w-full">
+      <div className="image-gallery-image relative aspect-[12/6] w-full">
         <Image
           src={item.original}
           alt={item.originalAlt ?? `${title} screenshot`}
@@ -64,85 +73,104 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
 
   return (
     <LazyMotion features={domAnimation}>
-    <m.article
-      initial={{ opacity: 0, y: index === 0 ? 250 : 200 / Math.max(index, 1) }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-5% 0px' }}
-      transition={{
-        duration: 0.9,
-        ease: [0.17, 0.55, 0.55, 1],
-        delay: index === 0 ? 0 : 0.025 * index,
-      }}
-      className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark"
-    >
-      <figure>
-        <div className="aspect-[12/9.2] w-full h-full p-1.5">
-          <Suspense fallback={<Loader />}>
-            <ImageGallery
-              items={galleryImages}
-              showPlayButton={false}
-              showThumbnails={false}
-              additionalClass="gallery-item"
-              lazyLoad={true}
-              showIndex={true}
-              showFullscreenButton={false}
-            />
-          </Suspense>
-        </div>
-      </figure>
-
-      <div className="flex-[2] px-5 py-6 text-center flex flex-col gap-10">
-        <header className="flex-1 flex items-center justify-start flex-col gap-3">
-          <h3 tabIndex={0} className="text-2xl font-bold">
-            {title}
-          </h3>
-          <p tabIndex={0} className="leading-7 font-light">
-            {description}
-          </p>
-        </header>
-
-        <footer className="flex flex-col gap-10">
-          {!!stack.length && (
-            <div className="flex-center flex-wrap gap-3">
-              {stack.map((tag) => (
-                <span
-                  key={tag}
-                  tabIndex={0}
-                  className="px-2 text-sm leading-normal rounded bg-badge-light/50 dark:bg-badge-dark"
-                >
-                  {tag}
-                </span>
-              ))}
+      <m.article
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-5% 0px' }}
+        transition={{
+          duration: 0.7,
+          ease: [0.17, 0.55, 0.55, 1],
+          delay: 0.05 * index,
+        }}
+        className="flex flex-col rounded-xl bg-card-light dark:bg-card-dark border border-cobalt-600/20 dark:border-cobalt-400/10 hover:border-cobalt-600/60 dark:hover:border-cobalt-400/40 transition-colors overflow-hidden"
+      >
+        {caseStudy ? (
+          <div className="aspect-[12/6] w-full bg-gradient-to-br from-cobalt-600/20 via-cobalt-400/10 to-transparent flex items-center justify-center">
+            <span className="text-xs uppercase tracking-[0.22em] font-semibold text-cobalt-700 dark:text-cobalt-400">
+              Case study
+            </span>
+          </div>
+        ) : (
+          <figure>
+            <div className="aspect-[12/6] w-full h-full p-1.5">
+              <Suspense fallback={<Loader />}>
+                <ImageGallery
+                  items={galleryImages}
+                  showPlayButton={false}
+                  showThumbnails={false}
+                  additionalClass="gallery-item"
+                  lazyLoad={true}
+                  showIndex={true}
+                  showFullscreenButton={false}
+                />
+              </Suspense>
             </div>
+          </figure>
+        )}
+
+        <div className="flex-1 px-5 py-6 flex flex-col gap-5">
+          <header className="flex flex-col gap-1.5">
+            {context && (
+              <p className="text-xs uppercase tracking-[0.18em] font-semibold text-cobalt-700 dark:text-cobalt-400">
+                {context}
+              </p>
+            )}
+            <h3 className="text-xl font-bold leading-tight">{title}</h3>
+          </header>
+
+          <p className="leading-relaxed text-sm opacity-85">{description}</p>
+
+          {impact && (
+            <p className="text-sm font-medium leading-relaxed border-l-2 border-cobalt-600 dark:border-cobalt-400 pl-3">
+              {impact}
+            </p>
           )}
 
-          <div className="flex-center gap-10">
-            {repoUrl && (
-              <a
-                href={repoUrl}
-                target="_blank"
-                className="icon-link-btn"
-                title="Go to Github repository"
-              >
-                <VscSourceControl />
-                <span>Source</span>
-              </a>
+          <footer className="mt-auto flex flex-col gap-4">
+            {!!stack.length && (
+              <div className="flex flex-wrap gap-2">
+                {stack.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-0.5 text-xs leading-normal rounded bg-badge-light/50 dark:bg-badge-dark"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             )}
-            {liveUrl && (
-              <a
-                href={liveUrl}
-                target="_blank"
-                className="icon-link-btn"
-                title="Go to live address"
-              >
-                <FiExternalLink />
-                <span>Demo</span>
-              </a>
+
+            {(repoUrl || liveUrl) && (
+              <div className="flex gap-4 pt-2 border-t border-cobalt-600/15 dark:border-cobalt-400/10">
+                {repoUrl && (
+                  <a
+                    href={repoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="icon-link-btn text-sm"
+                    title="Source repository"
+                  >
+                    <VscSourceControl />
+                    <span>Source</span>
+                  </a>
+                )}
+                {liveUrl && (
+                  <a
+                    href={liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="icon-link-btn text-sm"
+                    title="Live demo"
+                  >
+                    <FiExternalLink />
+                    <span>Demo</span>
+                  </a>
+                )}
+              </div>
             )}
-          </div>
-        </footer>
-      </div>
-    </m.article>
+          </footer>
+        </div>
+      </m.article>
     </LazyMotion>
   )
 }

@@ -4,7 +4,7 @@ interface FilterButtonProps {
   onClick: () => void
   label: string
   active: boolean
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 /**
@@ -22,24 +22,19 @@ export function FilterButton({
   active,
   children,
 }: FilterButtonProps) {
-  const activeClassName = 'icon-link-btn--active'
-
-  const buttonClass = `icon-link-btn icon-link-btn--outline w-14 h-10 relative ${
-    active ? activeClassName : ''
+  const buttonClass = `icon-link-btn icon-link-btn--outline h-10 px-3 gap-2 ${
+    active ? 'icon-link-btn--active border-cobalt-400' : ''
   }`
 
   return (
-    <div className="relative group">
-      <button
-        className={buttonClass}
-        onClick={onClick}
-        aria-label={`Filter projects by ${label.toLowerCase()}`}
-      >
-        {children}
-      </button>
-      <span className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 whitespace-nowrap bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-        {label}
-      </span>
-    </div>
+    <button
+      className={buttonClass}
+      onClick={onClick}
+      aria-pressed={active}
+      aria-label={`Filter projects by ${label.toLowerCase()}`}
+    >
+      {children}
+      <span className="text-sm">{label}</span>
+    </button>
   )
 }

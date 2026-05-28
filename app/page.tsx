@@ -4,6 +4,7 @@ import {
   ProjectsSection,
   TechnologiesSection,
 } from 'app/sections'
+import { AskWidget } from 'components/AskWidget'
 
 export default function Page() {
   return (
@@ -12,6 +13,7 @@ export default function Page() {
       <AboutSection />
       <ProjectsSection />
       <TechnologiesSection />
+      <AskWidget />
     </div>
   )
 }

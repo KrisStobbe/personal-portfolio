@@ -21,68 +21,96 @@ const transition = {
   delay: 0.5,
 }
 
-/**
- * AboutSection — personal background + resume CTA + career timeline.
- */
+const STATS = [
+  { value: '7+', label: 'years shipping production software' },
+  { value: 'MS', label: 'Data Analytics, Georgia Tech' },
+  { value: 'BS', label: 'Electrical & Computer Engineering, Baylor' },
+  { value: 'Eagle Scout', label: 'Eagle Scout, Boy Scouts of America' },
+]
+
 export function AboutSection() {
   return (
     <LazyMotion features={domAnimation}>
       <section id="about" className="section">
-        <HeadingDivider title="About me" />
-        <div className="pb-16 max-w-5xl flex flex-col gap-3">
+        <HeadingDivider title="About" />
+        <div className="pb-16 max-w-5xl grid md:grid-cols-[160px_1fr] gap-8 items-start mt-8">
           <m.div
-            tabIndex={0}
             variants={fadeInLeft}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: '-10% 0px' }}
             transition={transition}
-            className="text-xl font-light leading-relaxed"
           >
-            <div className="pt-2 mb-3 flex">
-              <Image
-                src="/assets/profile/kris-profile.webp"
-                alt="Kristoffer's Profile"
-                width={150}
-                height={150}
-                priority
-                className="rounded-full"
-              />
+            <Image
+              src="/assets/profile/kris-profile.webp"
+              alt="Kristoffer Stobbe"
+              width={160}
+              height={160}
+              priority
+              className="rounded-2xl ring-1 ring-cobalt-600/30 dark:ring-cobalt-400/30"
+            />
+          </m.div>
+
+          <m.div
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-10% 0px' }}
+            transition={transition}
+            className="flex flex-col gap-5 text-lg leading-relaxed"
+          >
+            <p>
+              I&apos;m a full-stack software engineer with{' '}
+              <strong className="text-cobalt-700 dark:text-cobalt-400">
+                7+ years
+              </strong>{' '}
+              of experience building data-intensive platforms across fintech
+              and clean energy. I specialize in designing scalable,
+              event-driven architectures — most recently leading a
+              reconciliation engine rebuild that unlocked enterprise-scale
+              customers, and previously architecting the API and data
+              infrastructure behind a solar financing platform that moved{' '}
+              <strong className="text-cobalt-700 dark:text-cobalt-400">
+                $2M+ in annual loans
+              </strong>
+              .
+            </p>
+            <p>
+              I enjoy the full lifecycle: shaping architecture, shipping
+              production code, mentoring engineers, and occasionally building
+              something scrappy when a hackathon calls for it.
+            </p>
+            <p>
+              I hold an MS in Data Analytics from{' '}
+              <strong className="text-cobalt-700 dark:text-cobalt-400">
+                Georgia Tech
+              </strong>{' '}
+              and a BS in Electrical &amp; Computer Engineering from{' '}
+              <strong className="text-cobalt-700 dark:text-cobalt-400">
+                Baylor
+              </strong>
+              . Outside of work I play electric guitar and read about physics,
+              astronomy, and philosophy.
+            </p>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
+              {STATS.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="rounded-lg border border-cobalt-600/30 dark:border-cobalt-400/20 bg-card-light dark:bg-card-dark px-3 py-4"
+                >
+                  <div className="text-xl md:text-2xl font-extrabold text-cobalt-700 dark:text-cobalt-400 whitespace-nowrap">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs opacity-75 leading-snug mt-1">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
             </div>
 
-            <p>
-              Hello, I&apos;m Kristoffer, a Senior Software Engineer with a focus on
-              full-stack development, data analytics, and cloud infrastructure.
-              Proficient in an array of technologies such as TypeScript, Python,
-              Java, React, and AWS, I excel in crafting intricate, scalable
-              solutions that meet diverse business needs.
-            </p>
-            <br />
-            <p>
-              While leading numerous projects, I&apos;ve consistently elevated user
-              experiences and streamlined operational processes. One of my
-              notable achievements includes overseeing the conception and
-              execution of a React-powered financial application complemented by
-              a robust RESTful API.
-            </p>
-            <br />
-            <p>
-              My educational background includes a Master&apos;s degree in Data
-              Analytics from Georgia Tech and a Bachelor&apos;s degree in Electrical
-              & Computer Engineering from Baylor University, underscoring my
-              commitment to continuous learning and expertise in the field.
-            </p>
-            <br />
-            <p>
-              Beyond the realm of software engineering, I find joy in playing
-              electric guitar and exploring the fields of philosophy, astronomy,
-              and physics. I believe in fostering not just professional growth,
-              but also nurturing passions and interests outside of work for a
-              balanced and fulfilling life.
-            </p>
-            <br />
             <m.div
-              className="mt-5"
+              className="mt-4 flex flex-wrap gap-3"
               variants={fadeInUp}
               initial="hidden"
               whileInView="visible"
@@ -91,12 +119,20 @@ export function AboutSection() {
             >
               <Link
                 href="/assets/resume/kristoffer-stobbe-resume.pdf"
-                tabIndex={0}
-                className="btn btn-primary"
-                aria-label="View Resume"
+                className="btn"
+                aria-label="View resume"
                 target="_blank"
               >
-                View Resume
+                View resume ↗
+              </Link>
+              <Link
+                href="https://www.linkedin.com/in/krisstobbe"
+                className="btn-ghost"
+                aria-label="LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                LinkedIn ↗
               </Link>
             </m.div>
           </m.div>

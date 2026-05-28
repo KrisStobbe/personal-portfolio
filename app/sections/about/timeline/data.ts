@@ -16,15 +16,16 @@ export const TimeLineData: TimeLineItem[] = [
     displayDate: 'May 2018',
     title: 'B.S. Electrical & Computer Engineering',
     org: 'Baylor University',
-    summary: 'Graduated from Baylor with a Minor in Mathematics.',
+    summary:
+      'Graduated from Baylor with a Math minor and multiple Dean’s List honors.',
   },
   {
     year: 2018,
-    displayDate: 'Jul 2018',
+    displayDate: 'Oct 2018',
     title: 'Technical Support Engineer',
     org: 'SAS Institute',
     summary:
-      'First role out of school, supporting analysts and engineers across data analytics and machine learning.',
+      'First post-Academy role, supporting analysts and engineers across data analytics and machine learning workflows.',
   },
   {
     year: 2020,
@@ -32,7 +33,7 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Data Analyst & Engineer',
     org: 'SunPower',
     summary:
-      'Automated data operations and built pipelines feeding the solar business.',
+      'Built a full-stack OCR + Flask system for government lien filings, processing 80K+ documents and saving 2K+ manual hours.',
   },
   {
     year: 2021,
@@ -40,7 +41,7 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Software Engineer',
     org: 'SunPower',
     summary:
-      'Promoted into the Software Engineering team to build full-stack tools and reporting platforms.',
+      'Promoted into the software engineering team to ship React/Node/MongoDB reporting tools on EKS with Jenkins CI/CD.',
   },
   {
     year: 2022,
@@ -48,11 +49,11 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Sr. Software Engineer',
     org: 'SunPower',
     summary:
-      'Stepped into technical leadership and launched a React financial app powering $2M+ in annual solar loans.',
+      'Led a React financial app powering $2M+ in annual solar loans and architected Java Spring Boot APIs on AWS CDK.',
   },
   {
     year: 2023,
-    displayDate: '2023',
+    displayDate: 'Aug 2023',
     title: 'M.S. Data Analytics',
     org: 'Georgia Tech',
     summary:
@@ -64,7 +65,7 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Software Engineer II',
     org: 'FloQast',
     summary:
-      'Earned an Operational Excellence Award for an AI-driven GL-mapping tool.',
+      'Designed a caching service that cut API latency ~75% and won an Operational Excellence Award for an AI-driven GL-mapping tool.',
   },
   {
     year: 2025,
@@ -72,6 +73,6 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Software Engineer III',
     org: 'FloQast',
     summary:
-      "Leading design of an event-driven reconciliation engine for FloQast's largest enterprise customers.",
+      'Leading design of an event-driven reconciliation engine for enterprise customers with millions of reconciliations and transactions.',
   },
 ]

@@ -11,14 +11,23 @@ module.exports = {
       colors: {
         brand: {
           light: '#FBF8F3',
-          dark: '#232332',
+          dark: '#0B1020',
+          surface: '#11172A',
           purple: '#7928CA',
           pink: '#FF0080',
         },
+        cobalt: {
+          50: '#eff6ff',
+          200: '#bfdbfe',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#1d4ed8',
+          700: '#1e40af',
+        },
         blue: {
-          lighter: '#71c5ee',
-          light: '#3182ce',
-          normal: '#025091',
+          lighter: '#60a5fa',
+          light: '#1d4ed8',
+          normal: '#1e40af',
         },
         card: {
           dark: 'rgba(255, 255, 255, 0.04)',

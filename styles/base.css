@@ -1,6 +1,21 @@
 @tailwind base;
+
 @layer base {
   body {
-    @apply bg-brand-light text-brand-dark dark:bg-brand-dark dark:text-brand-light;
+    @apply bg-brand-light text-brand-dark;
+  }
+  .dark body {
+    @apply bg-brand-dark text-brand-light;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }

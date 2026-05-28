@@ -59,9 +59,7 @@ export function Filter({ onClick = (f) => f }: FilterProps) {
             onClick={() => handleFilterClick(undefined)}
             label="All"
             active={activeFilter === undefined}
-          >
-            All
-          </FilterButton>
+          />
           <FilterButton
             onClick={() => handleFilterClick('React')}
             label="React"
