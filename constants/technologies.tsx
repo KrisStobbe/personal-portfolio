@@ -26,8 +26,12 @@ import {
   SiPandas,
   SiD3Dotjs,
   SiTypescript,
+  SiTerraform,
+  SiOpenai,
 } from 'react-icons/si'
 import { FaChartColumn } from 'react-icons/fa6'
+import { ClaudeIcon } from 'components/icons/ClaudeIcon'
+import { CursorIcon } from 'components/icons/CursorIcon'
 
 /**
  * Interface representing a technology item with name and icon
@@ -94,7 +98,16 @@ export const TECHNOLOGIES: TechnologyCategory[] = [
     category: 'DevOps',
     items: [
       { name: 'AWS', icon: <FaAws size={32} /> },
+      { name: 'Terraform', icon: <SiTerraform size={32} /> },
       { name: 'Github Actions', icon: <AiFillGithub size={32} /> },
+    ],
+  },
+  {
+    category: 'AI',
+    items: [
+      { name: 'OpenAI', icon: <SiOpenai size={32} /> },
+      { name: 'Claude', icon: <ClaudeIcon size={32} /> },
+      { name: 'Cursor', icon: <CursorIcon size={32} /> },
     ],
   },
   {

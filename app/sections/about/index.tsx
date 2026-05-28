@@ -1,51 +1,57 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
+import React from 'react'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TimeLine } from './TimeLine'
 import Link from 'next/link'
 import Image from 'next/image'
 
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -200 },
+  visible: { opacity: 1, x: 0 },
+}
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+}
+const transition = {
+  duration: 0.9,
+  ease: [0.17, 0.55, 0.55, 1] as [number, number, number, number],
+  delay: 0.5,
+}
+
 /**
- * AboutSection component that displays personal information and professional background
- * 
- * @returns {JSX.Element} The about section with personal information and timeline
+ * AboutSection — personal background + resume CTA + career timeline.
  */
 export function AboutSection() {
-  /** Reference to the animated content container */
-  const ref = useRef<HTMLDivElement>(null)
-  /** Tracks if the content is in view for animation triggers */
-  const isInView = useInView(ref, { once: true })
-
   return (
     <LazyMotion features={domAnimation}>
       <section id="about" className="section">
         <HeadingDivider title="About me" />
         <div className="pb-16 max-w-5xl flex flex-col gap-3">
-          <div
+          <m.div
             tabIndex={0}
-            ref={ref}
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={transition}
             className="text-xl font-light leading-relaxed"
-            style={{
-              transform: isInView ? 'none' : 'translateX(-200px)',
-              opacity: isInView ? 1 : 0,
-              transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-            }}
           >
-            {/* Circular Image */}
-            <div className="pt-2 mb-3" style={{ display: 'flex' }}>
+            <div className="pt-2 mb-3 flex">
               <Image
                 src="/assets/profile/kris-profile.webp"
                 alt="Kristoffer's Profile"
                 width={150}
                 height={150}
-                style={{ borderRadius: '50%' }}
+                priority
+                className="rounded-full"
               />
             </div>
 
             <p>
-              Hello, I'm Kristoffer, a Senior Software Engineer with a focus on
+              Hello, I&apos;m Kristoffer, a Senior Software Engineer with a focus on
               full-stack development, data analytics, and cloud infrastructure.
               Proficient in an array of technologies such as TypeScript, Python,
               Java, React, and AWS, I excel in crafting intricate, scalable
@@ -53,7 +59,7 @@ export function AboutSection() {
             </p>
             <br />
             <p>
-              While leading numerous projects, I've consistently elevated user
+              While leading numerous projects, I&apos;ve consistently elevated user
               experiences and streamlined operational processes. One of my
               notable achievements includes overseeing the conception and
               execution of a React-powered financial application complemented by
@@ -61,8 +67,8 @@ export function AboutSection() {
             </p>
             <br />
             <p>
-              My educational background includes a Master's degree in Data
-              Analytics from Georgia Tech and a Bachelor's degree in Electrical
+              My educational background includes a Master&apos;s degree in Data
+              Analytics from Georgia Tech and a Bachelor&apos;s degree in Electrical
               & Computer Engineering from Baylor University, underscoring my
               commitment to continuous learning and expertise in the field.
             </p>
@@ -75,14 +81,13 @@ export function AboutSection() {
               balanced and fulfilling life.
             </p>
             <br />
-            <div
+            <m.div
               className="mt-5"
-              ref={ref}
-              style={{
-                transform: isInView ? 'none' : 'translateY(50px)',
-                opacity: isInView ? 1 : 0,
-                transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-              }}
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={transition}
             >
               <Link
                 href="/assets/resume/kristoffer-stobbe-resume.pdf"
@@ -93,8 +98,8 @@ export function AboutSection() {
               >
                 View Resume
               </Link>
-            </div>
-          </div>
+            </m.div>
+          </m.div>
         </div>
         <TimeLine />
       </section>

@@ -1,7 +1,10 @@
-import React, { useRef, FunctionComponent, Suspense } from 'react'
-import { useInView } from 'framer-motion'
+'use client'
+
+import React, { FunctionComponent, Suspense } from 'react'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import Link from 'next/link'
-import ImageGallery from 'react-image-gallery'
+import Image from 'next/image'
+import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
 import { Loader } from 'components'
 import { VscSourceControl } from 'react-icons/vsc'
 import { FiExternalLink } from 'react-icons/fi'
@@ -39,40 +42,41 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
   index,
 }) => {
   const { description, images, liveUrl, repoUrl, stack, title } = project
-  /** Reference to the project card container */
-  const cardRef = useRef<HTMLDivElement>(null)
-  /** Tracks if the card is in view for animation triggers */
-  const isInView = useInView(cardRef, { once: true })
 
-  /** Transforms project images into gallery format */
-  const galleryImages = images.map((img) => ({
+  /** Transforms project images into gallery format with next/image optimization + alt text. */
+  const galleryImages: ReactImageGalleryItem[] = images.map((img, i) => ({
     original: img,
+    originalAlt: `${title} — screenshot ${i + 1}`,
     loading: 'lazy' as 'lazy' | 'eager' | undefined,
+    renderItem: (item) => (
+      <div className="image-gallery-image relative aspect-[12/9.2] w-full">
+        <Image
+          src={item.original}
+          alt={item.originalAlt ?? `${title} screenshot`}
+          fill
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover rounded"
+          priority={index === 0 && i === 0}
+        />
+      </div>
+    ),
   }))
 
   return (
-    <article
-      ref={cardRef}
-      className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark"
-      style={{
-        transform: isInView
-          ? 'none'
-          : `${
-              index === 0 ? 'translateY(250px)' : `translateY(${200 / index}px)`
-            }`,
-        opacity: isInView ? 1 : 0,
-        transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-          index === 0 ? 0 : 25 * index
-        }ms`,
+    <LazyMotion features={domAnimation}>
+    <m.article
+      initial={{ opacity: 0, y: index === 0 ? 250 : 200 / Math.max(index, 1) }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-5% 0px' }}
+      transition={{
+        duration: 0.9,
+        ease: [0.17, 0.55, 0.55, 1],
+        delay: index === 0 ? 0 : 0.025 * index,
       }}
+      className="flex flex-col rounded-lg bg-card-light dark:bg-card-dark"
     >
       <figure>
-        <div
-          className="aspect-[12/9.2] w-full h-full"
-          style={{
-            padding: 6,
-          }}
-        >
+        <div className="aspect-[12/9.2] w-full h-full p-1.5">
           <Suspense fallback={<Loader />}>
             <ImageGallery
               items={galleryImages}
@@ -138,7 +142,8 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
           </div>
         </footer>
       </div>
-    </article>
+    </m.article>
+    </LazyMotion>
   )
 }
 

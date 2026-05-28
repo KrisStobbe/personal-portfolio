@@ -1,79 +1,73 @@
-import React, { useRef, FunctionComponent } from 'react'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
+'use client'
+
+import React, { FunctionComponent } from 'react'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TECHNOLOGIES } from '../../../constants'
 
-/**
- * Interface representing a single technology item
- * @interface TechItem
- */
 interface TechItem {
-  /** Name of the technology */
   name: string
-  /** Icon component representing the technology */
   icon: JSX.Element
 }
 
-/**
- * Interface representing a technology category
- * @interface Technology
- */
 interface Technology {
-  /** Name of the technology category */
   category: string
-  /** Array of technology items in this category */
   items: TechItem[]
 }
 
+const introVariants = {
+  hidden: { opacity: 0, x: -300 },
+  visible: { opacity: 1, x: 0 },
+}
+
+const cardVariants = {
+  hidden: (i: number) => ({
+    opacity: 0,
+    y: i === 0 ? 250 : 200 / Math.max(i, 1),
+  }),
+  visible: { opacity: 1, y: 0 },
+}
+
 /**
- * TechnologiesSection component that displays a grid of technology categories
- * 
- * @returns {JSX.Element} A section displaying technology categories and items
+ * TechnologiesSection — categorized grid of stacks and tools.
  */
 export const TechnologiesSection: FunctionComponent = () => {
-  /** Reference to the introduction text for animation */
-  const textRef = useRef<HTMLParagraphElement>(null)
-  /** Tracks if the text is in view for animation triggers */
-  const isTextInView = useInView(textRef, { once: true })
-  /** Tracks if the technology stack is in view for animation triggers */
-  const isStackInView = useInView(textRef, { once: true })
-
   return (
     <LazyMotion features={domAnimation}>
       <section id="tech" className="section">
         <HeadingDivider title="Technologies" />
-        <p
-          ref={textRef}
+        <m.p
           tabIndex={0}
-          className="my-5 text-2xl"
-          style={{
-            transform: isTextInView ? 'none' : 'translateX(-300px)',
-            opacity: isTextInView ? 1 : 0,
-            transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+          variants={introVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{
+            duration: 0.9,
+            ease: [0.17, 0.55, 0.55, 1],
+            delay: 0.5,
           }}
+          className="my-5 text-2xl"
         >
           I work with the following technologies and tools:
-        </p>
+        </m.p>
 
         {!!TECHNOLOGIES.length && (
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-10">
             {TECHNOLOGIES.map((tech: Technology, index: number) => (
-              <div
+              <m.div
                 key={tech.category}
-                className="flex flex-col gap-4 flex-1 md:flex-auto"
-                style={{
-                  transform: isStackInView
-                    ? 'none'
-                    : `${
-                        index === 0
-                          ? 'translateY(250px)'
-                          : `translateY(${200 / index}px)`
-                      }`,
-                  opacity: isStackInView ? 1 : 0,
-                  transition: `all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) ${
-                    index === 0 ? 0 : 0.5 * index
-                  }s`,
+                custom={index}
+                variants={cardVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-5% 0px' }}
+                transition={{
+                  duration: 0.9,
+                  ease: [0.17, 0.55, 0.55, 1],
+                  delay: index === 0 ? 0 : 0.1 * index,
                 }}
+                className="flex flex-col gap-4 flex-1 md:flex-auto"
               >
                 <h3 tabIndex={0} className="text-2xl font-bold">
                   {tech.category}
@@ -81,7 +75,7 @@ export const TechnologiesSection: FunctionComponent = () => {
                 <div className="flex items-center flex-wrap gap-x-5 gap-y-8">
                   {tech.items.map((item: TechItem) => (
                     <div key={item.name} className="group relative flex">
-                      <span tabIndex={0} role="img">
+                      <span tabIndex={0} role="img" aria-label={item.name}>
                         {item.icon}
                       </span>
                       <span className="group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity bg-gray-800 text-sm text-gray-100 rounded-md absolute left-1/2 -translate-x-1/2 translate-y-full opacity-0 mt-3 mx-auto px-2 w-max">
@@ -90,7 +84,7 @@ export const TechnologiesSection: FunctionComponent = () => {
                     </div>
                   ))}
                 </div>
-              </div>
+              </m.div>
             ))}
           </div>
         )}

@@ -1,82 +1,58 @@
 'use client'
 
-import React, { useEffect, useState, useRef, FunctionComponent } from 'react'
+import React, { useEffect, useState, FunctionComponent } from 'react'
 import Link from 'next/link'
-import { LazyMotion, domAnimation, useInView } from 'framer-motion'
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { WelcomeAnimation } from './IntroAnimation'
 import { useScrollTo } from 'hooks'
 import { useMediaQuery } from 'utils'
 
-/**
- * Props for the TextElement component
- * @interface TextElementProps
- */
 interface TextElementProps {
-  /** The text content to be displayed with the first word emphasized */
   element: string
 }
 
-/**
- * TextElement component that displays text with the first word emphasized
- * Features:
- * - Animated entrance effect
- * - First word bold styling
- * - Responsive text sizing
- * 
- * @param {TextElementProps} props - Component props containing the text element
- * @returns {JSX.Element} A styled text element with animation
- */
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -200 },
+  visible: { opacity: 1, x: 0 },
+}
+const fadeInUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0 },
+}
+const transition = {
+  duration: 0.9,
+  ease: [0.17, 0.55, 0.55, 1] as [number, number, number, number],
+  delay: 0.5,
+}
+
 const TextElement: FunctionComponent<TextElementProps> = ({ element }) => {
   const firstWord = element.split(' ')[0]
   const restWords = element.substring(firstWord.length)
-  const ref = useRef<HTMLSpanElement>(null)
-  const isInView = useInView(ref, { once: true })
 
   return (
-    <span
+    <m.span
       tabIndex={0}
-      ref={ref}
-      className="text-[17px] md:text-2xl"
-      style={{
-        transform: isInView ? 'none' : 'translateX(-200px)',
-        opacity: isInView ? 1 : 0,
-        transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-        wordWrap: 'break-word',
-      }}
+      variants={fadeInLeft}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={transition}
+      className="text-[17px] md:text-2xl break-words"
     >
       <strong>{firstWord}</strong>
       {restWords}
-    </span>
+    </m.span>
   )
 }
 
 /**
- * WelcomeSection component that serves as the main introduction section
- * 
- * Features:
- * - Animated text transitions
- * - Rotating skill descriptions
- * - Responsive layout with grid system
- * - Interactive scroll navigation
- * - Conditional animation display based on screen size
- * 
- * @returns {JSX.Element} The welcome section with animated content
+ * WelcomeSection — landing hero with rotating skill text and a CTA into projects.
  */
 export function WelcomeSection() {
-  /** Reference to the main content container */
-  const ref = useRef<HTMLDivElement>(null)
-  /** Reference to the introduction section */
-  const introRef = useRef<HTMLElement>(null)
-  /** Tracks if the content is in view for animation triggers */
-  const isInView = useInView(ref, { once: true })
-  /** Custom hook for smooth scrolling */
   const { scrollToEl } = useScrollTo()
-  /** Media query hook for responsive design */
   const isTabletUp = useMediaQuery('min-width: 768px')
 
-  /** State for tracking current skill text index */
   const [count, setCount] = useState<number>(0)
-  /** Array of rotating skill descriptions */
   const [text] = useState<string[]>([
     'design dynamic applications',
     'build data pipelines',
@@ -85,16 +61,11 @@ export function WelcomeSection() {
     'develop AI-driven solutions',
   ])
 
-  /**
-   * Handles click events for smooth scrolling
-   * @param {React.MouseEvent<HTMLAnchorElement>} e - The click event
-   */
   const onClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault()
     scrollToEl(e)
   }
 
-  /** Effect to handle rotating text animation */
   useEffect(() => {
     const interval = setInterval(() => {
       setCount((prevCount) => (prevCount + 1) % text.length)
@@ -105,37 +76,35 @@ export function WelcomeSection() {
 
   return (
     <LazyMotion features={domAnimation}>
-      <section id="intro" className="section" ref={introRef}>
+      <section id="intro" className="section">
         <div
           className="grid grid-cols-1 md:grid-cols-[1fr_0.5fr] lg:grid-cols-[1fr_0.7fr] gap-4 items-center"
           style={{ height: '75vh' }}
         >
           <div className="py-5 md:py-10">
-            <h1
+            <m.h1
               tabIndex={0}
-              ref={ref}
+              variants={fadeInLeft}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={transition}
               className="text-3xl md:text-5xl xl:text-6xl font-bold"
-              style={{
-                transform: isInView ? 'none' : 'translateX(-200px)',
-                opacity: isInView ? 1 : 0,
-                transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-              }}
             >
               <p>
                 Hi - I&apos;m <mark>Kristoffer</mark>, a <mark>passionate</mark>{' '}
                 software engineer{' '}
               </p>
-            </h1>
+            </m.h1>
 
             <div className="mt-3 relative flex flex-col overflow-hidden">
-              <p
-                className="text-[17px] md:text-2xl transform-none opacity-100"
-                ref={ref}
-                style={{
-                  transform: isInView ? 'none' : 'translateX(-200px)',
-                  opacity: isInView ? 1 : 0,
-                  transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-                }}
+              <m.p
+                className="text-[17px] md:text-2xl"
+                variants={fadeInLeft}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                transition={transition}
               >
                 I{' '}
                 <span
@@ -146,17 +115,16 @@ export function WelcomeSection() {
                     <TextElement key={element} element={element} />
                   ))}
                 </span>
-              </p>
+              </m.p>
             </div>
 
-            <div
+            <m.div
               className="mt-10"
-              ref={ref}
-              style={{
-                transform: isInView ? 'none' : 'translateY(50px)',
-                opacity: isInView ? 1 : 0,
-                transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
-              }}
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={transition}
             >
               <Link
                 href="#projects"
@@ -167,7 +135,7 @@ export function WelcomeSection() {
               >
                 See my latest projects
               </Link>
-            </div>
+            </m.div>
           </div>
 
           {isTabletUp && <WelcomeAnimation />}

@@ -1,31 +1,26 @@
-import { useRef } from 'react'
-import { useInView } from 'framer-motion'
+'use client'
+
+import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
 /**
- * WelcomeAnimation component that displays an animated SVG background
- * 
- * @returns {JSX.Element} An animated SVG background element
+ * WelcomeAnimation — animated SVG background for the hero section.
  */
 export function WelcomeAnimation() {
-  /** Reference to the animation container */
-  const ref = useRef(null)
-  /** Tracks if the animation is in view for entrance effect */
-  const isInView = useInView(ref, { once: true })
-  /** Theme context for color mode */
   const { theme, systemTheme } = useTheme()
-  /** Determines the current color mode */
   const colorMode = theme === 'system' ? systemTheme : theme
-  /** Boolean indicating if dark theme is active */
   const darkThemeColor = colorMode === 'dark'
 
   return (
-    <div
-      ref={ref}
-      style={{
-        transform: isInView ? 'none' : 'translateX(100px)',
-        opacity: isInView ? 1 : 0,
-        transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 1s',
+    <LazyMotion features={domAnimation}>
+    <m.div
+      initial={{ opacity: 0, x: 100 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{
+        duration: 0.9,
+        ease: [0.17, 0.55, 0.55, 1],
+        delay: 1,
       }}
     >
       <svg
@@ -503,6 +498,7 @@ export function WelcomeAnimation() {
           </linearGradient>
         </defs>
       </svg>
-    </div>
+    </m.div>
+    </LazyMotion>
   )
 }

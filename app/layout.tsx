@@ -6,32 +6,43 @@ import { ThemeContext } from 'context/theme_context'
 
 export const metadata = { ...AppMetadata }
 
-/**
- * Interface defining the props for the RootLayout component
- * @interface RootLayoutProps
- */
 interface RootLayoutProps {
-  /** Child components to be rendered within the layout */
   children: ReactNode
 }
 
-/**
- * RootLayout component that provides the main application structure.
- * 
- * @component
- * @example
- * ```tsx
- * <RootLayout>
- *   <YourContent />
- * </RootLayout>
- * ```
- * 
- * @param {RootLayoutProps} props - Component props containing child elements
- * @returns {JSX.Element} The root layout structure of the application
- */
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Kristoffer Stobbe',
+  url: 'https://krisstobbe.com',
+  jobTitle: 'Senior Software Engineer',
+  description:
+    'Senior Software Engineer with a background in full-stack development, data analytics, and cloud infrastructure.',
+  alumniOf: [
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Georgia Institute of Technology',
+    },
+    {
+      '@type': 'CollegeOrUniversity',
+      name: 'Baylor University',
+    },
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/krisstobbe',
+    'https://github.com/krisstobbe',
+  ],
+}
+
 const RootLayout: FunctionComponent<RootLayoutProps> = ({ children }) => {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
+      </head>
       <body>
         <ThemeContext>
           <AppHeader />

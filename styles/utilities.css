@@ -10,4 +10,11 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+  .timeline-scroller {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .timeline-scroller::-webkit-scrollbar {
+    display: none;
+  }
 }

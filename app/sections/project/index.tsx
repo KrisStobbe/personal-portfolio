@@ -1,5 +1,7 @@
-import { Suspense, useRef } from 'react'
-import { domAnimation, LazyMotion, useInView } from 'framer-motion'
+'use client'
+
+import { Suspense } from 'react'
+import { domAnimation, LazyMotion, m } from 'framer-motion'
 import Link from 'next/link'
 import { HeadingDivider, Loader } from 'components'
 import Error from '../../error'
@@ -8,25 +10,15 @@ import { Projects } from '../../projects/components/Projects'
 import { SITE_ROUTES } from '../../../constants'
 import { projects } from 'app/projects/config'
 
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0 },
+}
+
 /**
- * ProjectsSection component that displays a preview of the latest projects
- * 
- * Features:
- * - Displays top 3 projects from the projects list
- * - Animated entrance effects
- * - Loading state with Suspense
- * - Error boundary for graceful error handling
- * - "More projects" button with animation
- * - Responsive layout
- * 
- * @returns {JSX.Element} A section displaying the latest projects with navigation
+ * ProjectsSection — landing-page preview of the latest projects with a CTA to the full list.
  */
 export function ProjectsSection() {
-  /** Reference to the "More projects" button for animation */
-  const btnRef = useRef<HTMLAnchorElement>(null)
-  /** Tracks if the button is in view for animation triggers */
-  const isBtnInView = useInView(btnRef, { once: true })
-
   return (
     <LazyMotion features={domAnimation}>
       <section id="projects" className="section">
@@ -46,20 +38,26 @@ export function ProjectsSection() {
             </ErrorBoundary>
           </Suspense>
 
-          <Link
-            href={SITE_ROUTES.projects}
-            tabIndex={-1}
-            aria-label="Go to projects page"
-            ref={btnRef}
-            className="btn"
-            style={{
-              transform: isBtnInView ? 'none' : 'translateX(-50px)',
-              opacity: isBtnInView ? 1 : 0,
-              transition: 'all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s',
+          <m.div
+            variants={fadeInLeft}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.9,
+              ease: [0.17, 0.55, 0.55, 1],
+              delay: 0.5,
             }}
           >
-            <button aria-label="See more projects">More projects</button>
-          </Link>
+            <Link
+              href={SITE_ROUTES.projects}
+              tabIndex={-1}
+              aria-label="Go to projects page"
+              className="btn"
+            >
+              <button aria-label="See more projects">More projects</button>
+            </Link>
+          </m.div>
         </div>
       </section>
     </LazyMotion>
