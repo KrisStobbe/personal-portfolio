@@ -11,7 +11,7 @@ const floqastReconciliation: IProject = {
   images: [],
   liveUrl: null,
   repoUrl: null,
-  stack: ['TypeScript', 'Node.js', 'AWS', 'Event-driven', 'DynamoDB'],
+  stack: ['TypeScript', 'Node.js', 'AWS', 'MongoDB'],
   createdAt: '2025-10-01T00:00:00Z',
 }
 
@@ -26,7 +26,7 @@ const floqastAiGlMapping: IProject = {
   images: [],
   liveUrl: null,
   repoUrl: null,
-  stack: ['TypeScript', 'React', 'Node.js', 'OpenAI', 'AWS'],
+  stack: ['TypeScript', 'Node.js', 'AWS', 'MongoDB'],
   createdAt: '2024-09-01T00:00:00Z',
 }
 
@@ -41,7 +41,7 @@ const sunpowerLoanApp: IProject = {
   images: [],
   liveUrl: null,
   repoUrl: null,
-  stack: ['React', 'TypeScript', 'REST API', 'Java Spring', 'Oracle'],
+  stack: ['React', 'TypeScript', 'Java', 'DynamoDB'],
   createdAt: '2022-01-15T00:00:00Z',
 }
 

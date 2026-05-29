@@ -21,8 +21,16 @@ const transition = {
   delay: 0.5,
 }
 
+const CAREER_START_YEAR = 2018
+const CAREER_START_MONTH = 8 // August
+const now = new Date()
+const yearsShipping =
+  now.getFullYear() -
+  CAREER_START_YEAR -
+  (now.getMonth() + 1 < CAREER_START_MONTH ? 1 : 0)
+
 const STATS = [
-  { value: '7+', label: 'years shipping production software' },
+  { value: `${yearsShipping}+`, label: 'years shipping production software' },
   { value: 'MS', label: 'Data Analytics, Georgia Tech' },
   { value: 'BS', label: 'Electrical & Computer Engineering, Baylor' },
   { value: 'Eagle Scout', label: 'Eagle Scout, Boy Scouts of America' },
@@ -62,7 +70,7 @@ export function AboutSection() {
             <p>
               I&apos;m a full-stack software engineer with{' '}
               <strong className="text-cobalt-700 dark:text-cobalt-400">
-                7+ years
+                {yearsShipping}+ years
               </strong>{' '}
               of experience building data-intensive platforms across fintech
               and clean energy. I specialize in designing scalable,

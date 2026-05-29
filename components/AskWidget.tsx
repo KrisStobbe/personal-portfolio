@@ -10,11 +10,11 @@ interface ChatMessage {
 }
 
 const SUGGESTED = [
-  'What did you build at FloQast?',
+  'What did Kristoffer build at FloQast?',
   'Tell me about the SunPower loan app',
-  'What is your AI experience?',
-  'What is your tech stack?',
-  'What does Kris do outside of work?',
+  'What is his AI experience?',
+  'What is his tech stack?',
+  'What does Kristoffer do outside of work?',
 ]
 
 const GREETING: ChatMessage = {
