@@ -312,7 +312,7 @@ export function AskWidget() {
 
 function renderInline(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = []
-  const pattern = /\*\*([^*]+)\*\*|__([^_]+)__|\*([^*\n]+)\*|_([^_\n]+)_|`([^`\n]+)`/g
+  const pattern = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|__([^_]+)__|\*([^*\n]+)\*|_([^_\n]+)_|`([^`\n]+)`/g
   let lastIndex = 0
   let match: RegExpExecArray | null
   let key = 0
@@ -320,10 +320,24 @@ function renderInline(text: string): React.ReactNode[] {
     if (match.index > lastIndex) {
       nodes.push(text.slice(lastIndex, match.index))
     }
-    const bold = match[1] ?? match[2]
-    const italic = match[3] ?? match[4]
-    const code = match[5]
-    if (bold !== undefined) {
+    const linkText = match[1]
+    const linkHref = match[2]
+    const bold = match[3] ?? match[4]
+    const italic = match[5] ?? match[6]
+    const code = match[7]
+    if (linkText !== undefined && linkHref !== undefined) {
+      const isExternal = /^https?:/i.test(linkHref)
+      nodes.push(
+        <a
+          key={`a-${key++}`}
+          href={linkHref}
+          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          className="text-cobalt-700 dark:text-cobalt-400 underline underline-offset-2 hover:text-cobalt-500 dark:hover:text-cobalt-300"
+        >
+          {linkText}
+        </a>,
+      )
+    } else if (bold !== undefined) {
       nodes.push(<strong key={`b-${key++}`}>{bold}</strong>)
     } else if (italic !== undefined) {
       nodes.push(<em key={`i-${key++}`}>{italic}</em>)

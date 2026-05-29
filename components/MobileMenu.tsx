@@ -112,5 +112,3 @@ export const MobileMenu: FunctionComponent = () => {
     </LazyMotion>
   )
 }
-
-export default MobileMenu

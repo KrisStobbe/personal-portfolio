@@ -66,5 +66,3 @@ export const Logo: FunctionComponent = () => {
     </LazyMotion>
   )
 }
-
-export default Logo
