@@ -66,10 +66,11 @@ export function AboutSection() {
               </strong>{' '}
               of experience building data-intensive platforms across fintech
               and clean energy. I specialize in designing scalable,
-              event-driven architectures — most recently leading a
-              reconciliation engine rebuild that unlocked enterprise-scale
-              customers, and previously architecting the API and data
-              infrastructure behind a solar financing platform that moved{' '}
+              robust architectures - most recently leading a
+              reconciliation engine rebuild at FloQast
+              that unlocks enterprise-scale customers, and previously
+              architecting the API and data infrastructure behind a
+              solar-financing platform that moved{' '}
               <strong className="text-cobalt-700 dark:text-cobalt-400">
                 $2M+ in annual loans
               </strong>
@@ -77,20 +78,17 @@ export function AboutSection() {
             </p>
             <p>
               I enjoy the full lifecycle: shaping architecture, shipping
-              production code, mentoring engineers, and occasionally building
-              something scrappy when a hackathon calls for it.
+              production code, and mentoring engineers.
             </p>
             <p>
-              I hold an MS in Data Analytics from{' '}
+              Off the clock you&apos;ll find me exploring Austin with my two
+              kids and wife, learning a new guitar solo, or lost in a book
+              (yes, The Lord of the Rings is the best fantasy series of all
+              time). I&apos;m also an{' '}
               <strong className="text-cobalt-700 dark:text-cobalt-400">
-                Georgia Tech
+                Eagle Scout
               </strong>{' '}
-              and a BS in Electrical &amp; Computer Engineering from{' '}
-              <strong className="text-cobalt-700 dark:text-cobalt-400">
-                Baylor
-              </strong>
-              . Outside of work I play electric guitar and read about physics,
-              astronomy, and philosophy.
+              and a Baylor Bear for life - Sic &apos;em.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">

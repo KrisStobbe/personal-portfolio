@@ -56,8 +56,8 @@ export function WelcomeSection() {
               transition={transition}
               className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.05] tracking-tight"
             >
-              Hi - I&apos;m <mark>Kristoffer</mark>, a software engineer who
-              builds things that <mark>ship</mark>.
+              Hi, I&apos;m <mark>Kristoffer</mark>. I design systems that solve
+              hard engineering problems.
             </m.h1>
 
             <m.div
@@ -65,7 +65,7 @@ export function WelcomeSection() {
               initial="hidden"
               animate="visible"
               transition={{ ...transition, delay: 0.35 }}
-              className="text-lg md:text-xl text-brand-dark/80 dark:text-brand-light/70"
+              className="text-lg md:text-xl text-brand-dark/80 dark:text-brand-light/70 min-h-[5.25rem] sm:min-h-[3.5rem] md:min-h-[3.75rem]"
             >
               <span className="opacity-70">Most recently: </span>
               <m.span

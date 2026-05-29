@@ -65,7 +65,7 @@ export const TimeLineData: TimeLineItem[] = [
     title: 'Software Engineer II',
     org: 'FloQast',
     summary:
-      'Designed a caching service that cut API latency ~75% and won an Operational Excellence Award for an AI-driven GL-mapping tool.',
+      'Designed a caching service that cut API latency ~75% and led my team to the Operational Excellence Award at FloQast’s inaugural hackathon for an AI-driven GL-mapping tool.',
   },
   {
     year: 2025,

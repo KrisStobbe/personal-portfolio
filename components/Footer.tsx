@@ -84,7 +84,7 @@ export const AppFooter: FunctionComponent = () => {
             </Link>
             <p className="text-sm opacity-65 leading-relaxed max-w-md">
               Building thoughtful, scalable systems out of Austin, TX.
-              Currently at FloQast. Open to conversations about interesting
+              Open to conversations about interesting
               technical problems.
             </p>
           </div>

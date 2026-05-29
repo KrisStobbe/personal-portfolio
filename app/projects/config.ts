@@ -2,7 +2,7 @@ import { IProject } from './components/Projects'
 
 const floqastReconciliation: IProject = {
   caseStudy: true,
-  context: 'FloQast · 2025',
+  context: 'FloQast · 2026',
   title: 'Event-driven reconciliation engine',
   description:
     'Leading design of an event-driven reconciliation engine serving FloQast’s largest enterprise customers. Decomposed a synchronous monolith into a queue-backed, idempotent pipeline that scales horizontally per customer.',
@@ -17,12 +17,12 @@ const floqastReconciliation: IProject = {
 
 const floqastAiGlMapping: IProject = {
   caseStudy: true,
-  context: 'FloQast · 2024–2025',
+  context: 'FloQast · 2025',
   title: 'AI-driven GL-mapping tool',
   description:
     'Designed and shipped an AI-driven general-ledger mapping tool that suggests account mappings for new customers during onboarding using LLM-backed classification with human-in-the-loop review.',
   impact:
-    'Earned the company’s Operational Excellence Award; cut a previously manual onboarding step into a guided, reviewable workflow.',
+    'Led my team to the Operational Excellence Award at FloQast’s inaugural hackathon; cut a previously manual onboarding step into a guided, reviewable workflow.',
   images: [],
   liveUrl: null,
   repoUrl: null,
