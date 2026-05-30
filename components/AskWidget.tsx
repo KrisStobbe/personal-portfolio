@@ -326,17 +326,22 @@ function renderInline(text: string): React.ReactNode[] {
     const italic = match[5] ?? match[6]
     const code = match[7]
     if (linkText !== undefined && linkHref !== undefined) {
-      const isExternal = /^https?:/i.test(linkHref)
-      nodes.push(
-        <a
-          key={`a-${key++}`}
-          href={linkHref}
-          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-          className="text-cobalt-700 dark:text-cobalt-400 underline underline-offset-2 hover:text-cobalt-500 dark:hover:text-cobalt-300"
-        >
-          {linkText}
-        </a>,
-      )
+      const isExternal = /^https?:\/\//i.test(linkHref)
+      const isSafeHref = isExternal || /^(mailto:|\/|#)/i.test(linkHref)
+      if (isSafeHref) {
+        nodes.push(
+          <a
+            key={`a-${key++}`}
+            href={linkHref}
+            {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+            className="text-cobalt-700 dark:text-cobalt-400 underline underline-offset-2 hover:text-cobalt-500 dark:hover:text-cobalt-300"
+          >
+            {linkText}
+          </a>,
+        )
+      } else {
+        nodes.push(linkText)
+      }
     } else if (bold !== undefined) {
       nodes.push(<strong key={`b-${key++}`}>{bold}</strong>)
     } else if (italic !== undefined) {

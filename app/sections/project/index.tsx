@@ -1,11 +1,8 @@
 'use client'
 
-import { Suspense } from 'react'
 import { domAnimation, LazyMotion, m } from 'framer-motion'
 import Link from 'next/link'
-import { HeadingDivider, Loader } from 'components'
-import Error from '../../error'
-import { ErrorBoundary } from 'react-error-boundary'
+import { HeadingDivider } from 'components'
 import { Projects } from '../../projects/components/Projects'
 import { SITE_ROUTES } from '../../../constants'
 import { projects } from 'app/projects/config'
@@ -26,17 +23,7 @@ export function ProjectsSection() {
         <div className="h-10 md:h-14" />
 
         <div className="flex flex-col items-center gap-8 md:gap-14">
-          <Suspense
-            fallback={
-              <div className="flex-center">
-                <Loader />
-              </div>
-            }
-          >
-            <ErrorBoundary FallbackComponent={Error}>
-              {projects && <Projects projects={projects.slice(0, 3)} />}
-            </ErrorBoundary>
-          </Suspense>
+          {projects && <Projects projects={projects.slice(0, 3)} />}
 
           <m.div
             variants={fadeInLeft}

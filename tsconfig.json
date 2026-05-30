@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "target": "es6",
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -10,12 +10,19 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "typeRoots": ["./node_modules/@types", "./typings"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
     "types": [],
     "allowJs": true,
     "incremental": true,
@@ -32,8 +39,11 @@
     "pages",
     "utils",
     ".next/types/**/*.ts",
-    "typings.d.ts"
+    "typings.d.ts",
+    ".next/dev/types/**/*.ts"
   ],
   "paths": {},
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -17,7 +17,7 @@ interface SocialMediaItem {
   /** Display title for the social media link */
   title: string
   /** Icon component for the social media platform */
-  icon: JSX.Element
+  icon: React.JSX.Element
 }
 
 /**

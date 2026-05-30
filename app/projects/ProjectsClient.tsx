@@ -1,13 +1,11 @@
 'use client'
 
-import React, { Suspense, useState } from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { BsArrowLeft } from 'react-icons/bs'
-import { ErrorBoundary } from 'react-error-boundary'
-import { HeadingDivider, Loader } from 'components'
+import { HeadingDivider } from 'components'
 import { SITE_ROUTES } from '../../constants'
 import { Filter } from './components/Filter'
-import Error from '../error'
 import { Projects } from './components/Projects'
 import { IProject } from './components/Projects'
 import { FilterOption } from './components/Filter'
@@ -41,25 +39,15 @@ export function ProjectsClient() {
 
         <Filter onClick={onClick} />
 
-        <Suspense
-          fallback={
-            <div className="flex-center">
-              <Loader />
-            </div>
-          }
-        >
-          <ErrorBoundary FallbackComponent={Error}>
-            {filteredProjects.length === 0 ? (
-              <div className="flex-center">
-                <h3 className="text-2xl">
-                  No projects found in {category} category
-                </h3>
-              </div>
-            ) : (
-              <Projects projects={filteredProjects} />
-            )}
-          </ErrorBoundary>
-        </Suspense>
+        {filteredProjects.length === 0 ? (
+          <div className="flex-center">
+            <h3 className="text-2xl">
+              No projects found in {category} category
+            </h3>
+          </div>
+        ) : (
+          <Projects projects={filteredProjects} />
+        )}
 
         <div className="mt-16 flex justify-center">
           <Link

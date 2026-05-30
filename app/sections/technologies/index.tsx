@@ -7,7 +7,7 @@ import { TECHNOLOGIES, HEADLINE_TECH } from '../../../constants'
 
 interface TechItem {
   name: string
-  icon: JSX.Element
+  icon: React.JSX.Element
 }
 
 interface Technology {

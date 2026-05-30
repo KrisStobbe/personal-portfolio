@@ -4,12 +4,12 @@ import React, { FunctionComponent, Suspense } from 'react'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
-import ImageGallery, { ReactImageGalleryItem } from 'react-image-gallery'
+import ImageGallery, { GalleryItem } from 'react-image-gallery'
 import { Loader } from 'components'
 import { VscSourceControl } from 'react-icons/vsc'
 import { FiExternalLink } from 'react-icons/fi'
 import { IProject } from 'app/projects/components/Projects'
-import 'react-image-gallery/styles/css/image-gallery.css'
+import 'react-image-gallery/styles/image-gallery.css'
 
 /**
  * Props for the ProjectItem component
@@ -53,7 +53,7 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
     caseStudy,
   } = project
 
-  const galleryImages: ReactImageGalleryItem[] = images.map((img, i) => ({
+  const galleryImages: GalleryItem[] = images.map((img, i) => ({
     original: img,
     originalAlt: `${title} screenshot ${i + 1}`,
     loading: 'lazy' as 'lazy' | 'eager' | undefined,
