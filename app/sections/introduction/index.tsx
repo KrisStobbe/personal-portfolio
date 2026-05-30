@@ -56,8 +56,8 @@ export function WelcomeSection() {
               transition={transition}
               className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.05] tracking-tight"
             >
-              Hi, I&apos;m <mark>Kristoffer</mark>. I design systems that solve
-              hard engineering problems.
+              Hi, I&apos;m <mark>Kristoffer</mark>. I build software that{' '}
+              <mark>ships</mark>.
             </m.h1>
 
             <m.div

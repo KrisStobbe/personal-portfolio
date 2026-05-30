@@ -7,7 +7,7 @@ interface IconProps {
 }
 
 /**
- * Anthropic (Claude) brand mark — a stylized starburst.
+ * Anthropic (Claude) brand mark; a stylized starburst.
  * Inherits `currentColor`; size defaults to 24 to match react-icons.
  */
 export const ClaudeIcon: FunctionComponent<IconProps> = ({

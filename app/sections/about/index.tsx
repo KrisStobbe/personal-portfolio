@@ -74,7 +74,7 @@ export function AboutSection() {
               </strong>{' '}
               of experience building data-intensive platforms across fintech
               and clean energy. I specialize in designing scalable,
-              robust architectures - most recently leading a
+              robust architectures. Most recently leading a
               reconciliation engine rebuild at FloQast
               that unlocks enterprise-scale customers, and previously
               architecting the API and data infrastructure behind a
@@ -96,7 +96,7 @@ export function AboutSection() {
               <strong className="text-cobalt-700 dark:text-cobalt-400">
                 Eagle Scout
               </strong>{' '}
-              and a Baylor Bear for life - Sic &apos;em.
+              and a Baylor Bear for life. Sic &apos;em.
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">

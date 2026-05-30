@@ -55,7 +55,7 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
 
   const galleryImages: ReactImageGalleryItem[] = images.map((img, i) => ({
     original: img,
-    originalAlt: `${title} — screenshot ${i + 1}`,
+    originalAlt: `${title} screenshot ${i + 1}`,
     loading: 'lazy' as 'lazy' | 'eager' | undefined,
     renderItem: (item) => (
       <div className="image-gallery-image relative aspect-[12/6] w-full">

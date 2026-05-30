@@ -13,7 +13,7 @@ export function TimeLine() {
     setMounted(true)
   }, [])
 
-  // Vertical until the media query reports — mobile-first, SSR-friendly.
+  // Vertical until the media query reports; mobile-first, SSR-friendly.
   if (!mounted) return <VerticalTimeline />
 
   return isTabletUp ? <HorizontalTimeline /> : <VerticalTimeline />

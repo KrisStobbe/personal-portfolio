@@ -4,7 +4,7 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
 /**
- * WelcomeAnimation — animated SVG background for the hero section.
+ * WelcomeAnimation: animated SVG background for the hero section.
  */
 export function WelcomeAnimation() {
   const { theme, systemTheme } = useTheme()

@@ -25,7 +25,7 @@ export function HorizontalTimeline() {
 
   /**
    * Without dynamic end-padding the last item can't be snap-aligned to the
-   * viewport's left edge — scrollLeft maxes out before reaching that point,
+   * viewport's left edge; scrollLeft maxes out before reaching that point,
    * which strands the arrow N items short of the end. Pad the right of the
    * inner list so the trailing item has room to snap-start.
    */

@@ -2,7 +2,7 @@
 const author = 'Kristoffer Stobbe'
 /** Detailed description of the portfolio and author */
 const description =
-  'Kristoffer Stobbe — Software Engineer building AI-driven and event-driven systems, and full-stack platforms that have moved $2M+ in annual loan volume. MS, Georgia Tech.'
+  'Kristoffer Stobbe: Software Engineer building AI-driven and event-driven systems, and full-stack platforms that have moved $2M+ in annual loan volume. MS, Georgia Tech.'
 /** Base URL for the portfolio */
 const url = 'https://krisstobbe.com/'
 

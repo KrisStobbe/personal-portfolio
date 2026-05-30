@@ -38,7 +38,7 @@ export const TechnologiesSection: FunctionComponent = () => {
           }}
           className="my-5 text-lg opacity-80 max-w-3xl"
         >
-          My core stack — full technology experience below.
+          My core stack. Full technology experience below.
         </m.p>
 
         <m.div

@@ -49,7 +49,7 @@ interface TechnologyCategory {
   items: TechnologyItem[]
 }
 
-/** Curated short list highlighted at the top of the section — the technologies Kris is strongest in. */
+/** Curated short list highlighted at the top of the section; the technologies Kris is strongest in. */
 export const HEADLINE_TECH: TechnologyItem[] = [
   { name: 'TypeScript', icon: <SiTypescript size={36} /> },
   { name: 'React', icon: <DiReact size={36} /> },

@@ -7,7 +7,7 @@ interface IconProps {
 }
 
 /**
- * Cursor (the AI code editor) brand mark — its triangular A-frame logo.
+ * Cursor (the AI code editor) brand mark; its triangular A-frame logo.
  * Inherits `currentColor`; size defaults to 24 to match react-icons.
  */
 export const CursorIcon: FunctionComponent<IconProps> = ({

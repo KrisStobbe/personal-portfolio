@@ -47,7 +47,7 @@ function VerticalItem({
       }}
       className="relative grid md:grid-cols-2 md:gap-10 pl-16 md:pl-0"
     >
-      {/* Year badge — sits on the spine */}
+      {/* Year badge sits on the spine */}
       <div
         className="absolute left-0 md:left-1/2 top-2 md:-translate-x-1/2 z-10"
         aria-hidden="true"

@@ -16,7 +16,7 @@ const fadeInLeft = {
 }
 
 /**
- * ProjectsSection — landing-page preview of the latest projects with a CTA to the full list.
+ * ProjectsSection: landing-page preview of the latest projects with a CTA to the full list.
  */
 export function ProjectsSection() {
   return (

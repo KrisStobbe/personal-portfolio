@@ -3,11 +3,11 @@ import { IProject } from './components/Projects'
 const floqastReconciliation: IProject = {
   caseStudy: true,
   context: 'FloQast · 2026',
-  title: 'Event-driven reconciliation engine',
+  title: 'Event-Driven Reconciliation Engine',
   description:
     'Leading design of an event-driven reconciliation engine serving FloQast’s largest enterprise customers. Decomposed a synchronous monolith into a queue-backed, idempotent pipeline that scales horizontally per customer.',
   impact:
-    'Unblocks the enterprise tier by making reconciliation throughput predictable at month-end close — the highest-load window in our customers’ calendar.',
+    'Unblocks the enterprise tier by making reconciliation throughput predictable at month-end close, the highest-load window in our customers’ calendar.',
   images: [],
   liveUrl: null,
   repoUrl: null,
@@ -18,7 +18,7 @@ const floqastReconciliation: IProject = {
 const floqastAiGlMapping: IProject = {
   caseStudy: true,
   context: 'FloQast · 2025',
-  title: 'AI-driven GL-mapping tool',
+  title: 'AI-Driven GL-Mapping Tool',
   description:
     'Designed and shipped an AI-driven general-ledger mapping tool that suggests account mappings for new customers during onboarding using LLM-backed classification with human-in-the-loop review.',
   impact:
@@ -33,7 +33,7 @@ const floqastAiGlMapping: IProject = {
 const sunpowerLoanApp: IProject = {
   caseStudy: true,
   context: 'SunPower · 2022',
-  title: 'React financial app for solar loans',
+  title: 'React Financial App for Solar Loans',
   description:
     'Led the build of a React-powered financial application backed by a RESTful API. Owned architecture, frontend, and integration with the loan-servicing backend.',
   impact:
@@ -94,7 +94,7 @@ const personalPortfolio: IProject = {
   context: 'Open source · 2023',
   description:
     'This site. Next.js 14 App Router, Tailwind, framer-motion, and a Claude-powered Ask-my-work widget.',
-  impact: 'Iterating on it in public — see GitHub for the commit history.',
+  impact: 'Iterating on it in public; see GitHub for the commit history.',
   images: ['/assets/projects/portfolio/image-1.png'],
   liveUrl: 'https://krisstobbe.com',
   repoUrl: 'https://github.com/KrisStobbe/personal-portfolio',

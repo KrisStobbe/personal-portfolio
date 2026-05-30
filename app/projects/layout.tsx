@@ -9,7 +9,7 @@ export async function generateMetadata(
   return {
     title: 'Projects',
     description:
-      "A selection of Kristoffer Stobbe's full-stack, data, and infrastructure projects — including React/Next.js apps, analytics dashboards, and AI-powered tools.",
+      "A selection of Kristoffer Stobbe's full-stack, data, and infrastructure projects, including React/Next.js apps, analytics dashboards, and AI-powered tools.",
     alternates: { canonical: '/projects' },
     openGraph: {
       ...(parentMeta.openGraph ?? {}),
