@@ -7,28 +7,40 @@ import { TimeLine } from './TimeLine'
 import Link from 'next/link'
 import Image from 'next/image'
 
+/** Framer Motion variants for left-to-right entrance. */
 const fadeInLeft = {
   hidden: { opacity: 0, x: -200 },
   visible: { opacity: 1, x: 0 },
 }
+/** Framer Motion variants for bottom-to-top entrance. */
 const fadeInUp = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0 },
 }
+/** Shared transition timing for the section's animations. */
 const transition = {
   duration: 0.9,
   ease: [0.17, 0.55, 0.55, 1] as [number, number, number, number],
   delay: 0.5,
 }
 
+/** Year career started; used to compute years-of-experience at render time. */
 const CAREER_START_YEAR = 2018
+/** Month (1-12) career started; used to handle partial-year rounding. */
 const CAREER_START_MONTH = 8 // August
+/** Snapshot of "now" taken at module load. */
 const now = new Date()
+/**
+ * Whole years of professional experience, computed at module load.
+ * Subtracts one if the current month is before the career-start month
+ * so we don't round up before the work-anniversary lands.
+ */
 const yearsShipping =
   now.getFullYear() -
   CAREER_START_YEAR -
   (now.getMonth() + 1 < CAREER_START_MONTH ? 1 : 0)
 
+/** Stat tiles shown alongside the bio copy. */
 const STATS = [
   { value: `${yearsShipping}+`, label: 'years shipping production software' },
   { value: 'MS', label: 'Data Analytics, Georgia Tech' },
@@ -36,6 +48,12 @@ const STATS = [
   { value: 'Eagle Scout', label: 'Eagle Scout, Boy Scouts of America' },
 ]
 
+/**
+ * "About" section of the home page: profile photo, bio copy, stat tiles,
+ * resume / LinkedIn CTAs, and the career timeline.
+ *
+ * @returns {JSX.Element} The about section.
+ */
 export function AboutSection() {
   return (
     <LazyMotion features={domAnimation}>
@@ -74,13 +92,13 @@ export function AboutSection() {
               </strong>{' '}
               of experience building data-intensive platforms across fintech
               and clean energy. I specialize in designing scalable,
-              robust architectures. Most recently leading a
-              reconciliation engine rebuild at FloQast
-              that unlocks enterprise-scale customers, and previously
-              architecting the API and data infrastructure behind a
-              solar-financing platform that moved{' '}
+              robust architectures. Most recently, I led the rebuild of
+              FloQast&apos;s reconciliation engine to support
+              enterprise-scale growth. Prior to that, I architected the
+              APIs and data infrastructure behind a solar financing
+              platform that facilitated over{' '}
               <strong className="text-cobalt-700 dark:text-cobalt-400">
-                $2M+ in annual loans
+                $2M in annual loans
               </strong>
               .
             </p>

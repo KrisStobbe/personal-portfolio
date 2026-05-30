@@ -5,22 +5,41 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { HeadingDivider } from 'components'
 import { TECHNOLOGIES, HEADLINE_TECH } from '../../../constants'
 
+/**
+ * A single technology rendered in the stack grid.
+ */
 interface TechItem {
+  /** Display name of the technology. */
   name: string
+  /** Icon node shown alongside the name. */
   icon: React.JSX.Element
 }
 
+/**
+ * A category of related technologies (e.g. "Languages", "Frameworks").
+ */
 interface Technology {
+  /** Heading shown above the items. */
   category: string
+  /** Individual technologies grouped under this category. */
   items: TechItem[]
 }
 
+/** Framer Motion variants for the section's intro fade-in. */
 const introVariants = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0 },
 }
 
+/**
+ * "Stack" section of the home page. Shows a compact headline strip of
+ * core technologies, with an optional expanded grid of the full
+ * tech catalog grouped by category.
+ *
+ * @returns {JSX.Element} The technologies section.
+ */
 export const TechnologiesSection: FunctionComponent = () => {
+  /** Whether the full stack grid is visible. */
   const [expanded, setExpanded] = useState(false)
 
   return (

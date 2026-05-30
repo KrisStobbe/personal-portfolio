@@ -5,12 +5,17 @@ import Link from 'next/link'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { ConnectMedia } from './ConnectMedia'
 
+/** Primary in-page navigation links shown in the footer. */
 const NAV_LINKS = [
   { name: 'About', href: '#about' },
   { name: 'Work', href: '#projects' },
   { name: 'Stack', href: '#tech' },
 ]
 
+/**
+ * External / contact links shown in the footer's "Connect" column.
+ * `external: true` opens the link in a new tab with safe rel attributes.
+ */
 const CONTACT_LINKS = [
   {
     name: 'Email',
@@ -34,6 +39,14 @@ const CONTACT_LINKS = [
   },
 ]
 
+/**
+ * Internal helper that renders a styled footer link. When `external` is
+ * `true`, opens in a new tab with `rel="noopener noreferrer"`.
+ *
+ * @param props.href - Link destination URL
+ * @param props.external - Whether the link should open in a new tab
+ * @param props.children - Link label
+ */
 const TextLink = ({
   href,
   external,
@@ -53,7 +66,16 @@ const TextLink = ({
   </Link>
 )
 
+/**
+ * Site-wide footer rendered at the bottom of every page.
+ *
+ * Includes a short bio, primary navigation, contact links, social icons,
+ * and a copyright line whose year is computed at render time.
+ *
+ * @returns {JSX.Element} The animated footer element.
+ */
 export const AppFooter: FunctionComponent = () => {
+  /** Current year, recomputed each render for the copyright line. */
   const year = new Date().getFullYear()
 
   return (

@@ -1,11 +1,10 @@
 'use client'
 
-import React, { FunctionComponent, Suspense } from 'react'
+import React, { FunctionComponent } from 'react'
 import { LazyMotion, domAnimation, m } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import ImageGallery, { GalleryItem } from 'react-image-gallery'
-import { Loader } from 'components'
 import { VscSourceControl } from 'react-icons/vsc'
 import { FiExternalLink } from 'react-icons/fi'
 import { IProject } from 'app/projects/components/Projects'
@@ -93,17 +92,15 @@ const ProjectItem: FunctionComponent<ProjectItemProps> = ({
         ) : (
           <figure>
             <div className="aspect-[12/6] w-full h-full p-1.5">
-              <Suspense fallback={<Loader />}>
-                <ImageGallery
-                  items={galleryImages}
-                  showPlayButton={false}
-                  showThumbnails={false}
-                  additionalClass="gallery-item"
-                  lazyLoad={true}
-                  showIndex={true}
-                  showFullscreenButton={false}
-                />
-              </Suspense>
+              <ImageGallery
+                items={galleryImages}
+                showPlayButton={false}
+                showThumbnails={false}
+                additionalClass="gallery-item"
+                lazyLoad={true}
+                showIndex={true}
+                showFullscreenButton={false}
+              />
             </div>
           </figure>
         )}

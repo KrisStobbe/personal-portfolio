@@ -1,5 +1,14 @@
 import { BsFillEnvelopeOpenFill, BsGithub, BsLinkedin } from 'react-icons/bs'
 
+/**
+ * Social media / contact links rendered by the {@link ConnectMedia} component.
+ *
+ * Each entry has:
+ * - `id`: unique identifier used as a React key
+ * - `icon`: ReactNode rendered as the link's visual
+ * - `title`: accessible tooltip / aria label
+ * - `url`: destination URL (can be `mailto:` or `https:`)
+ */
 export const SOCIAL_MEDIA = [
   {
     id: 'linkedin',

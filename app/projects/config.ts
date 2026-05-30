@@ -1,5 +1,13 @@
 import { IProject } from './components/Projects'
 
+/**
+ * Project entries surfaced on the `/projects` page.
+ *
+ * Each entry is typed as {@link IProject}; entries with `caseStudy: true`
+ * are rendered with the extended case-study layout. The `createdAt` field
+ * is an ISO timestamp used solely for sorting / display.
+ */
+
 const floqastReconciliation: IProject = {
   caseStudy: true,
   context: 'FloQast · 2026',
@@ -103,6 +111,10 @@ const personalPortfolio: IProject = {
   createdAt: '2023-05-05T00:00:00Z',
 }
 
+/**
+ * Ordered list of projects rendered on the `/projects` page. Order here
+ * controls render order on the page.
+ */
 export const projects: IProject[] = [
   flexSoftware,
   floqastReconciliation,

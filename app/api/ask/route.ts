@@ -2,24 +2,53 @@ import { NextRequest } from 'next/server'
 import Anthropic from '@anthropic-ai/sdk'
 import { ASK_SYSTEM_PROMPT } from './system-prompt'
 
+/** Force the Node.js runtime so we can use the Anthropic SDK and timers. */
 export const runtime = 'nodejs'
 
+/**
+ * One turn of the chat exchange sent to the Anthropic API.
+ */
 interface AskMessage {
+  /** Author of the message. */
   role: 'user' | 'assistant'
+  /** Message text. Truncated server-side to {@link MAX_USER_CHARS}. */
   content: string
 }
 
+/**
+ * JSON body expected by `POST /api/ask`.
+ */
 interface AskRequestBody {
+  /** Conversation history, oldest → newest. The last entry must be from the user. */
   messages: AskMessage[]
 }
 
+/** Maximum number of past messages forwarded to the model. */
 const MAX_MESSAGES = 20
+/** Maximum number of characters allowed per message after truncation. */
 const MAX_USER_CHARS = 500
+/** Maximum requests an IP may make per {@link RATE_WINDOW_MS}. */
 const RATE_LIMIT = 20
+/** Sliding window (ms) used by the in-memory rate limiter. */
 const RATE_WINDOW_MS = 5 * 60_000
 
+/**
+ * In-memory rate-limit ledger keyed by client IP. Values are timestamps
+ * of recent requests; old entries are evicted opportunistically by
+ * {@link rateLimited}.
+ *
+ * NOTE: Single-process only; not safe for multi-instance deployments.
+ */
 const hits = new Map<string, number[]>()
 
+/**
+ * Records a request from the given IP and returns whether it should be
+ * rate-limited. Also opportunistically prunes the ledger when it grows
+ * large to keep memory bounded.
+ *
+ * @param ip - Client IP address.
+ * @returns `true` if the request exceeds the rate limit.
+ */
 function rateLimited(ip: string): boolean {
   const now = Date.now()
   const arr = hits.get(ip) ?? []
@@ -34,6 +63,21 @@ function rateLimited(ip: string): boolean {
   return recent.length > RATE_LIMIT
 }
 
+/**
+ * `POST /api/ask` — proxies a chat exchange to the Anthropic Messages API
+ * and streams the assistant's reply back as `text/plain`.
+ *
+ * Responsibilities:
+ * - 503 if the server is missing `ANTHROPIC_API_KEY`.
+ * - 429 if the requesting IP has exceeded the rate limit.
+ * - 400 on malformed or empty input.
+ * - Otherwise opens a streaming response that pipes Anthropic deltas to
+ *   the client as raw text. Errors mid-stream are surfaced inline as
+ *   `[error: ...]` so the client can display them gracefully.
+ *
+ * @param req - The incoming Next.js request.
+ * @returns A streaming text response or a JSON error response.
+ */
 export async function POST(req: NextRequest) {
   if (!process.env.ANTHROPIC_API_KEY) {
     return new Response(

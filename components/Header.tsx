@@ -8,17 +8,38 @@ import { MENU_OPTIONS, SITE_ROUTES } from '../constants'
 import { useScrollTo } from 'hooks'
 import { BsArrowReturnLeft } from 'react-icons/bs'
 
+/**
+ * Shape of a single navigation entry rendered in the header.
+ */
 interface MenuItem {
+  /** Stable identifier used as a React key. */
   id: string
+  /** Visible label shown to the user. */
   name: string
+  /** In-page anchor or route the link points to. */
   url: string
 }
 
+/**
+ * Sticky site header containing the logo, primary navigation,
+ * a resume link, the theme switcher, and a mobile menu trigger.
+ *
+ * On the home page it scrolls smoothly between sections and
+ * highlights the active section via IntersectionObserver. On other
+ * pages it shows a "Back" link to the home route.
+ *
+ * @returns {JSX.Element} The header element.
+ */
 export const AppHeader: FunctionComponent = () => {
+  /** Current pathname; used to vary header behavior per-route. */
   const pathname = usePathname()
+  /** True when the user is on the landing page. */
   const isHome = pathname === SITE_ROUTES.home
+  /** Smooth-scroll helper used by anchor clicks. */
   const { scrollToEl } = useScrollTo()
+  /** True once the page has been scrolled past the threshold. */
   const [scrolled, setScrolled] = useState(false)
+  /** Hash of the section currently in view (e.g. `#about`). */
   const [activeHash, setActiveHash] = useState<string>('')
 
   useEffect(() => {
@@ -47,6 +68,13 @@ export const AppHeader: FunctionComponent = () => {
     return () => observer.disconnect()
   }, [isHome])
 
+  /**
+   * Intercepts anchor clicks on the home page so we can smooth-scroll
+   * to the target section. On non-home routes we let the browser
+   * navigate normally.
+   *
+   * @param e - Click event from the anchor element.
+   */
   const handleAnchorClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (!isHome) return
     e.preventDefault()

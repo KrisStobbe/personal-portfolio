@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import { ThemeProvider } from 'next-themes'
 
 /**
@@ -11,6 +12,12 @@ import { ThemeProvider } from 'next-themes'
  * @returns {JSX.Element} A ThemeProvider component wrapping the children
  */
 export function ThemeContext({ children }) {
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+  }, [])
+
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       {children}

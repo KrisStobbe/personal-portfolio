@@ -4,11 +4,17 @@ import React, { useEffect, useRef, useState } from 'react'
 import { LazyMotion, domAnimation, m, AnimatePresence } from 'framer-motion'
 import { FiMessageSquare, FiX, FiSend } from 'react-icons/fi'
 
+/**
+ * A single chat message exchanged with the assistant.
+ */
 interface ChatMessage {
+  /** Author of the message. */
   role: 'user' | 'assistant'
+  /** Plain-text or markdown content of the message. */
   content: string
 }
 
+/** Prompt suggestions surfaced before the user has typed anything. */
 const SUGGESTED = [
   'What did Kristoffer build at FloQast?',
   'Tell me about the SunPower loan app',
@@ -17,22 +23,40 @@ const SUGGESTED = [
   'What does Kristoffer do outside of work?',
 ]
 
+/** Initial assistant message shown when the chat opens. */
 const GREETING: ChatMessage = {
   role: 'assistant',
   content:
     "Hey, I'm Kristoffer's portfolio assistant. Ask me about his experience, projects, or stack.",
 }
 
+/** sessionStorage key used to remember the user dismissed the peek bubble. */
 const PEEK_DISMISSED_KEY = 'askwidget:peek-dismissed'
+/** Hard upper bound on the input length sent to the API. */
 const MAX_INPUT_CHARS = 500
+/** Character count at which the live character counter becomes visible. */
 const COUNTER_VISIBLE_AT = 400
 
+/**
+ * Floating "Ask my AI" chat widget. Streams responses from `/api/ask`,
+ * renders a lightweight subset of markdown (bold, italic, code, links,
+ * bullets) in assistant messages, and shows suggested prompts until the
+ * user sends their first message.
+ *
+ * @returns {JSX.Element} The chat launcher + popover.
+ */
 export function AskWidget() {
+  /** Whether the chat popover is currently expanded. */
   const [open, setOpen] = useState(false)
+  /** Current value of the input field. */
   const [input, setInput] = useState('')
+  /** Conversation history shown in the popover. */
   const [messages, setMessages] = useState<ChatMessage[]>([GREETING])
+  /** True while an assistant response is being streamed in. */
   const [streaming, setStreaming] = useState(false)
+  /** Whether the peek bubble nudging the user to open the chat is visible. */
   const [showPeek, setShowPeek] = useState(false)
+  /** Ref to the scroll container so we can auto-scroll on new messages. */
   const scrollRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -49,6 +73,10 @@ export function AskWidget() {
     return () => window.clearTimeout(timer)
   }, [])
 
+  /**
+   * Hides the peek bubble and persists the dismissal for the session so
+   * it doesn't reappear on subsequent renders within the same tab.
+   */
   const dismissPeek = () => {
     setShowPeek(false)
     if (typeof window !== 'undefined') {
@@ -56,6 +84,13 @@ export function AskWidget() {
     }
   }
 
+  /**
+   * Sends a user message to `/api/ask` and streams the assistant's
+   * response back into the message list. No-ops if the input is empty,
+   * a stream is already in flight, or the input exceeds the max length.
+   *
+   * @param text - Raw user input to send.
+   */
   const send = async (text: string) => {
     if (!text.trim() || streaming) return
     if (text.length > MAX_INPUT_CHARS) return
@@ -310,6 +345,15 @@ export function AskWidget() {
   )
 }
 
+/**
+ * Renders a single line of text as React nodes, supporting a small subset
+ * of inline markdown: links `[text](url)`, bold `**x**` / `__x__`,
+ * italic `*x*` / `_x_`, and inline code `` `x` ``. Unsupported / unsafe
+ * link schemes fall back to plain text.
+ *
+ * @param text - The raw text to render inline.
+ * @returns Array of React nodes ready to be inserted into a parent block.
+ */
 function renderInline(text: string): React.ReactNode[] {
   const nodes: React.ReactNode[] = []
   const pattern = /\[([^\]]+)\]\(([^)\s]+)\)|\*\*([^*]+)\*\*|__([^_]+)__|\*([^*\n]+)\*|_([^_\n]+)_|`([^`\n]+)`/g
@@ -362,6 +406,13 @@ function renderInline(text: string): React.ReactNode[] {
   return nodes
 }
 
+/**
+ * Block-level renderer for the limited markdown dialect supported by the
+ * chat widget. Splits the text into paragraphs and unordered lists, then
+ * delegates inline formatting to {@link renderInline}.
+ *
+ * @param props.text - Full assistant message text to render.
+ */
 function MarkdownText({ text }: { text: string }) {
   const lines = text.split('\n')
   const blocks: React.ReactNode[] = []
@@ -416,6 +467,12 @@ function MarkdownText({ text }: { text: string }) {
   return <div className="flex flex-col gap-2">{blocks}</div>
 }
 
+/**
+ * Single animated dot used in the typing indicator shown while the
+ * assistant is streaming a response.
+ *
+ * @param props.delay - Seconds to delay the pulsing animation by.
+ */
 function Dot({ delay }: { delay: number }) {
   return (
     <m.span

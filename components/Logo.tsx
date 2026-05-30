@@ -6,6 +6,10 @@ import { LazyMotion, domAnimation, m } from 'framer-motion'
 import { initial, animate, exit, transition } from 'utils/motions'
 import { SITE_ROUTES } from '../constants'
 
+/**
+ * Decorative gradient mark rendered alongside the wordmark.
+ * Marked `aria-hidden` so screen readers fall back to the wordmark label.
+ */
 const Symbol: FunctionComponent = () => (
   <svg
     width="28"
@@ -37,6 +41,12 @@ const Symbol: FunctionComponent = () => (
   </svg>
 )
 
+/**
+ * Site logo: a gradient symbol paired with the name + role wordmark.
+ * Links back to the home route and animates in on mount.
+ *
+ * @returns {JSX.Element} The animated logo link.
+ */
 export const Logo: FunctionComponent = () => {
   return (
     <LazyMotion features={domAnimation}>

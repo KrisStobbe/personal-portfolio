@@ -1,3 +1,7 @@
+/**
+ * Barrel module re-exporting the shared component library so callers can
+ * import from a single path (e.g. `import { AppHeader } from 'components'`).
+ */
 export { AppMetadata } from './AppMetadata'
 export { AppHeader } from './Header'
 export { AppFooter } from './Footer'

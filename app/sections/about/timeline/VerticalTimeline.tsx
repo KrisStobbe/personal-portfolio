@@ -11,6 +11,11 @@ import {
 } from 'framer-motion'
 import { TimeLineData, TimeLineItem } from './data'
 
+/**
+ * Framer Motion variants that slide each timeline card in from the side
+ * it'll be displayed on. The `fromLeft` custom value flips the
+ * direction so items alternate.
+ */
 const itemVariants = {
   hidden: (fromLeft: boolean) => ({
     opacity: 0,
@@ -19,6 +24,15 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 }
 
+/**
+ * Single entry in the vertical timeline. Alternates which column its
+ * card sits in (left vs. right of the spine) based on `index`, and
+ * highlights the year badge while the entry is roughly centered in
+ * the viewport.
+ *
+ * @param props.item - Timeline entry to render.
+ * @param props.index - Position of the entry in the list (used for layout).
+ */
 function VerticalItem({
   item,
   index,
@@ -26,8 +40,11 @@ function VerticalItem({
   item: TimeLineItem
   index: number
 }) {
+  /** Ref used to drive the "in view" highlight on the year badge. */
   const itemRef = useRef<HTMLLIElement>(null)
+  /** True while this entry is roughly centered in the viewport. */
   const isActive = useInView(itemRef, { margin: '-45% 0px -45% 0px' })
+  /** Whether the card is rendered to the left of the spine. */
   const isLeft = index % 2 === 0
 
   const sideAlign = isLeft ? 'md:text-right md:items-end' : 'md:items-start'
@@ -100,12 +117,21 @@ function VerticalItem({
   )
 }
 
+/**
+ * Mobile / stacked timeline layout. Renders entries in chronological
+ * order down a vertical spine whose fill animates with scroll progress.
+ *
+ * @returns {JSX.Element} The vertical timeline.
+ */
 export function VerticalTimeline() {
+  /** Wraps the list; used as the scroll-progress target. */
   const containerRef = useRef<HTMLDivElement>(null)
+  /** Normalized scroll progress (0–1) over the visible timeline range. */
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ['start 80%', 'end 20%'],
   })
+  /** Animated height of the gradient fill that tracks scroll. */
   const fillHeight = useTransform(scrollYProgress, [0, 1], ['0%', '100%'])
 
   return (

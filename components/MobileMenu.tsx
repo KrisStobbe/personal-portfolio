@@ -8,11 +8,24 @@ import { FiX } from 'react-icons/fi'
 import { ConnectMedia, Menu } from 'components'
 import { m, AnimatePresence, domAnimation, LazyMotion } from 'framer-motion'
 
+/**
+ * Slide-in mobile navigation drawer rendered on small viewports.
+ *
+ * Handles open/close state, body-scroll locking while open, Escape-to-close,
+ * and renders the drawer through a portal attached to `document.body` so
+ * it escapes any clipping ancestors.
+ *
+ * @returns {JSX.Element} The trigger button and (when open) the drawer.
+ */
 export const MobileMenu: FunctionComponent = () => {
+  /** Whether the drawer is currently open. */
   const [isOpen, setIsOpen] = useState(false)
+  /** Tracks first client-side render so we can safely use `createPortal`. */
   const [mounted, setMounted] = useState(false)
 
+  /** Closes the drawer. */
   const onClose = () => setIsOpen(false)
+  /** Opens the drawer. */
   const onOpen = () => setIsOpen(true)
 
   useEffect(() => {
