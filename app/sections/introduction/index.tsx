@@ -48,7 +48,7 @@ export function WelcomeSection() {
   useEffect(() => {
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % OUTCOMES.length)
-    }, 3200)
+    }, 4000)
     return () => clearInterval(id)
   }, [])
 
