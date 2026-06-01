@@ -57,7 +57,7 @@ const flexSoftware: IProject = {
   context: 'Side project · 2024',
   description:
     'Business website for Flex Software LLC, a provider of software development services.',
-  impact: 'Designed, built, and shipped solo end-to-end.',
+  impact: 'Designed, built, and shipped end-to-end.',
   images: [
     '/assets/projects/flex-software/image-1.png',
     '/assets/projects/flex-software/image-2.png',
