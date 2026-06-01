@@ -21,9 +21,9 @@ const transition = {
 
 /** Rotating list of headline accomplishments displayed under the title. */
 const OUTCOMES = [
-  'shipped an AI-driven GL-mapping tool at FloQast',
   'designed an event-driven reconciliation engine',
-  'launched a React loan app powering $2M+ in annual volume',
+  'shipped an AI-driven GL-mapping tool',
+  'launched a full-stack loan app powering $2M+ in annual volume',
   'earned an MS in Data Analytics from Georgia Tech',
   'cut API response times ~75% with a new caching service',
   "won an Operational Excellence Award at FloQast's inaugural hackathon",
@@ -78,8 +78,8 @@ export function WelcomeSection() {
               transition={transition}
               className="text-4xl md:text-5xl xl:text-6xl font-extrabold leading-[1.05] tracking-tight"
             >
-              Hi, I&apos;m <mark>Kristoffer</mark>. I build software that{' '}
-              <mark>ships</mark>.
+              Hi, I&apos;m <mark>Kristoffer</mark>. I turn complex problems
+              into <mark>reliable</mark> software.
             </m.h1>
 
             <m.div
