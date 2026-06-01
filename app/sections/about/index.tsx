@@ -104,7 +104,8 @@ export function AboutSection() {
             </p>
             <p>
               I enjoy the full lifecycle: shaping architecture, shipping
-              production code, and mentoring engineers.
+              production code, and growing alongside the engineers I work
+              with.
             </p>
             <p>
               Off the clock you&apos;ll find me exploring Austin with my two
