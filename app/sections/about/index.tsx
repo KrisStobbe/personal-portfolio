@@ -27,7 +27,7 @@ const transition = {
 /** Year career started; used to compute years-of-experience at render time. */
 const CAREER_START_YEAR = 2018
 /** Month (1-12) career started; used to handle partial-year rounding. */
-const CAREER_START_MONTH = 8 // August
+const CAREER_START_MONTH = 5 // May
 /** Snapshot of "now" taken at module load. */
 const now = new Date()
 /**
