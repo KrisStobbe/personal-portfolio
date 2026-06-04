@@ -111,11 +111,7 @@ export function AboutSection() {
               Off the clock you&apos;ll find me exploring Austin with my two
               kids and wife, learning a new guitar solo, or lost in a book
               (yes, The Lord of the Rings is the best fantasy series of all
-              time). I&apos;m also an{' '}
-              <strong className="text-cobalt-700 dark:text-cobalt-400">
-                Eagle Scout
-              </strong>{' '}
-              and a Baylor Bear for life. Sic &apos;em.
+              time). I&apos;m also an Eagle Scout and a Baylor Bear for life. Sic &apos;em!
             </p>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-2">
